@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- AI助手对话表单视图 -->
+    <record id="view_ai_assistant_form" model="ir.ui.view">
+        <field name="name">ai.assistant.form</field>
+        <field name="model">ai.assistant</field>
+        <field name="arch" type="xml">
+            <form string="AI智能助手">
+                <header>
+                    <button name="action_mark_resolved"
+                            string="✅ 标记已解决"
+                            type="object"
+                            class="btn-success"
+                            invisible="is_resolved"/>
+                    <field name="is_resolved" widget="statusbar" statusbar_visible="false,true"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>🤖 智能助手</h1>
+                        <h2>您的ERP专属AI顾问</h2>
+                    </div>
+                    
+                    <group>
+                        <group string="对话信息">
+                            <field name="name"/>
+                            <field name="category"/>
+                            <field name="confidence_score" widget="percentage"/>
+                            <field name="user_id"/>
+                        </group>
+                        <group string="会话状态">
+                            <field name="session_id"/>
+                            <field name="create_date"/>
+                            <field name="is_resolved"/>
+                        </group>
+                    </group>
+                    
+                    <group string="💬 提问">
+                        <field name="question" placeholder="请输入您的问题..." nolabel="1"/>
+                    </group>
+                    
+                    <group string="🤖 AI回答">
+                        <field name="answer" readonly="1" nolabel="1" widget="text"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- AI助手聊天界面 - 增强版本 -->
+    <record id="view_ai_assistant_chat_form" model="ir.ui.view">
+        <field name="name">ai.assistant.chat.form</field>
+        <field name="model">ai.assistant</field>
+        <field name="arch" type="xml">
+            <form string="AI助手聊天">
+                <header>
+                    <button name="action_ask_question"
+                            string="🚀 提问"
+                            type="object"
+                            class="btn-primary"
+                            invisible="not question"/>
+                    <button name="action_clear_chat"
+                            string="🗑️ 清空"
+                            type="object"
+                            class="btn-secondary"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>🤖 智能助手</h1>
+                        <p>我可以帮您查询库存、生产计划、订单状态等信息</p>
+                    </div>
+
+                    <group string="💬 提问">
+                        <field name="question" placeholder="请输入您的问题，然后点击'提问'按钮..." nolabel="1"/>
+                    </group>
+
+                    <group string="🤖 AI回答">
+                        <field name="answer" readonly="1" nolabel="1" widget="text"/>
+                    </group>
+
+                    <!-- 快捷查询按钮 -->
+                    <group string="🚀 快捷查询">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <button name="action_quick_query"
+                                        string="📦 库存状态"
+                                        type="object"
+                                        class="btn btn-outline-primary btn-block mb-2"
+                                        context="{'query': '当前库存情况'}"/>
+                                <button name="action_quick_query"
+                                        string="🏭 生产计划"
+                                        type="object"
+                                        class="btn btn-outline-success btn-block mb-2"
+                                        context="{'query': '今天的生产计划'}"/>
+                                <button name="action_quick_query"
+                                        string="📋 订单情况"
+                                        type="object"
+                                        class="btn btn-outline-info btn-block mb-2"
+                                        context="{'query': '待处理订单'}"/>
+                            </div>
+                            <div class="col-md-6">
+                                <button name="action_quick_query"
+                                        string="⚠️ 库存预警"
+                                        type="object"
+                                        class="btn btn-outline-warning btn-block mb-2"
+                                        context="{'query': '哪些产品缺货'}"/>
+                                <button name="action_quick_query"
+                                        string="⏱️ 生产工时"
+                                        type="object"
+                                        class="btn btn-outline-dark btn-block mb-2"
+                                        context="{'query': '生产工时情况'}"/>
+                                <button name="action_quick_query"
+                                        string="❓ 使用帮助"
+                                        type="object"
+                                        class="btn btn-outline-secondary btn-block mb-2"
+                                        context="{'query': '如何使用系统'}"/>
+                            </div>
+                        </div>
+                    </group>
+
+                    <group string="💡 使用提示">
+                        <div>
+                            <p><strong>使用方法：</strong></p>
+                            <ol>
+                                <li>在上方输入框中输入您的问题</li>
+                                <li>点击"🚀 提问"按钮获取回答</li>
+                                <li>或者直接点击快捷查询按钮</li>
+                            </ol>
+                            <p><strong>示例问题：</strong></p>
+                            <ul>
+                                <li>📦 "当前库存情况如何？"</li>
+                                <li>🏭 "今天有哪些生产计划？"</li>
+                                <li>📋 "待处理的订单有哪些？"</li>
+                                <li>⚠️ "哪些产品缺货？"</li>
+                                <li>❓ "如何使用系统？"</li>
+                            </ul>
+                        </div>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- AI助手列表视图 -->
+    <record id="view_ai_assistant_tree" model="ir.ui.view">
+        <field name="name">ai.assistant.tree</field>
+        <field name="model">ai.assistant</field>
+        <field name="type">list</field>
+        <field name="arch" type="xml">
+            <list string="AI助手对话记录">
+                <field name="create_date"/>
+                <field name="name"/>
+                <field name="category"/>
+                <field name="question"/>
+                <field name="confidence_score" widget="percentage"/>
+                <field name="is_resolved" widget="boolean_toggle"/>
+                <field name="user_id"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- AI助手搜索视图 -->
+    <record id="view_ai_assistant_search" model="ir.ui.view">
+        <field name="name">ai.assistant.search</field>
+        <field name="model">ai.assistant</field>
+        <field name="arch" type="xml">
+            <search string="AI助手搜索">
+                <field name="question"/>
+                <field name="category"/>
+                <field name="user_id"/>
+                <separator/>
+                <filter string="已解决" name="resolved" 
+                        domain="[('is_resolved', '=', True)]"/>
+                <filter string="未解决" name="unresolved" 
+                        domain="[('is_resolved', '=', False)]"/>
+                <separator/>
+                <filter string="库存查询" name="inventory" 
+                        domain="[('category', '=', 'inventory')]"/>
+                <filter string="生产管理" name="production" 
+                        domain="[('category', '=', 'production')]"/>
+                <filter string="订单管理" name="order" 
+                        domain="[('category', '=', 'order')]"/>
+                <group expand="0" string="分组">
+                    <filter string="分类" name="group_category" 
+                            context="{'group_by': 'category'}"/>
+                    <filter string="用户" name="group_user" 
+                            context="{'group_by': 'user_id'}"/>
+                    <filter string="日期" name="group_date" 
+                            context="{'group_by': 'create_date:day'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- AI助手聊天动作 -->
+    <record id="action_ai_assistant_chat" model="ir.actions.act_window">
+        <field name="name">🤖 AI智能助手</field>
+        <field name="res_model">ai.assistant</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_ai_assistant_chat_form"/>
+        <field name="target">current</field>
+        <field name="context">{}</field>
+    </record>
+
+    <!-- AI助手对话记录动作 -->
+    <record id="action_ai_assistant_history" model="ir.actions.act_window">
+        <field name="name">AI对话记录</field>
+        <field name="res_model">ai.assistant</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[]</field>
+        <field name="context">{
+            'search_default_unresolved': 1,
+        }</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                开始与AI助手对话！
+            </p>
+            <p>
+                AI助手可以帮助您：
+                <ul>
+                    <li>📦 查询库存信息</li>
+                    <li>🏭 了解生产计划</li>
+                    <li>📋 跟踪订单状态</li>
+                    <li>❓ 获取使用帮助</li>
+                </ul>
+            </p>
+        </field>
+    </record>
+</odoo>

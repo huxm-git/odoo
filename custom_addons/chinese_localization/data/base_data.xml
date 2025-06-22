@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- 中文公司信息 -->
+        <record id="base.main_company" model="res.company">
+            <field name="name">智能制造有限公司</field>
+            <field name="street">中国上海市浦东新区张江高科技园区</field>
+            <field name="city">上海</field>
+            <field name="zip">201203</field>
+            <field name="country_id" ref="base.cn"/>
+            <field name="phone">+86-21-12345678</field>
+            <field name="email">info@smart-manufacturing.com</field>
+            <field name="website">https://www.smart-manufacturing.com</field>
+        </record>
+
+        <!-- 中文货币设置 -->
+        <record id="base.CNY" model="res.currency">
+            <field name="active">True</field>
+        </record>
+
+        <!-- 设置中文为默认语言 -->
+        <record id="base.lang_zh_CN" model="res.lang">
+            <field name="active">True</field>
+        </record>
+
+        <!-- 中文用户组名称 -->
+        <record id="base.group_user" model="res.groups">
+            <field name="comment">内部用户组：可以访问大部分功能，但不能修改系统配置。</field>
+        </record>
+
+        <record id="base.group_system" model="res.groups">
+            <field name="comment">系统管理员组：拥有所有权限，可以修改系统配置和管理用户。</field>
+        </record>
+
+        <!-- 中文时区设置 -->
+        <record id="base.user_admin" model="res.users">
+            <field name="tz">Asia/Shanghai</field>
+            <field name="lang">zh_CN</field>
+        </record>
+
+        <!-- 中文日期格式 -->
+        <record id="base.lang_zh_CN" model="res.lang">
+            <field name="date_format">%Y-%m-%d</field>
+            <field name="time_format">%H:%M:%S</field>
+            <field name="week_start">1</field>
+            <field name="thousands_sep">,</field>
+            <field name="decimal_point">.</field>
+        </record>
+    </data>
+</odoo>

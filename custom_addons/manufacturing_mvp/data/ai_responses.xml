@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- 预设AI回答数据 -->
+        <record id="ai_response_welcome" model="ai.assistant">
+            <field name="name">欢迎使用</field>
+            <field name="question">你好</field>
+            <field name="answer">您好！欢迎使用南通斯瑞医用有限公司智能制造MVP系统！我是您的AI助手，可以帮助您：
+
+🏥 Strict® 医用产品管理
+• 医用垫片系列（酒精预处理垫片、聚维酮碘垫片等）
+• 棉签棒系列（酒精棉签棒、聚维酮碘棉签棒等）
+• 无菌生理盐水产品（清洁湿巾、清洁管等）
+• 测试试剂产品
+
+📦 库存管理
+• 查询产品库存状态
+• 库存预警提醒
+• 扫码入库出库操作
+
+🏭 生产管理
+• 查看生产计划和进度
+• 生产排班管理
+• 工时统计分析
+
+📋 订单管理
+• 医院客户订单管理
+• 经销商订单跟踪
+• 客户信息管理
+
+请告诉我您需要什么帮助，或者点击快捷查询按钮快速获取信息！</field>
+            <field name="category">general</field>
+            <field name="confidence_score">1.0</field>
+            <field name="is_resolved">True</field>
+        </record>
+
+        <record id="ai_response_inventory_help" model="ai.assistant">
+            <field name="name">库存帮助</field>
+            <field name="question">库存管理功能</field>
+            <field name="answer">📦 智能库存管理功能包括：
+
+🔍 实时库存查询
+• 查看所有产品的当前库存
+• 按产品类别筛选
+• 库存状态一目了然
+
+⚠️ 智能预警系统
+• 自动检测库存不足
+• 可设置最低库存水平
+• 及时提醒补货
+
+📱 扫码操作
+• 支持条码扫描入库
+• 快速出库操作
+• 操作记录自动保存
+
+📊 库存分析
+• 库存周转分析
+• 呆滞库存识别
+• 库存成本统计
+
+您可以通过"智能库存"菜单访问这些功能。</field>
+            <field name="category">inventory</field>
+            <field name="confidence_score">0.95</field>
+            <field name="is_resolved">True</field>
+        </record>
+
+        <record id="ai_response_production_help" model="ai.assistant">
+            <field name="name">生产帮助</field>
+            <field name="question">生产管理功能</field>
+            <field name="answer">🏭 智能生产管理功能包括：
+
+📋 生产计划管理
+• 创建和管理生产订单
+• 物料需求计算
+• 生产优先级设置
+
+👥 生产排班
+• 可视化生产线状态
+• 工人分配管理
+• 生产进度实时跟踪
+
+⏱️ 工时管理
+• 预计工时自动计算
+• 实际工时记录
+• 生产效率分析
+
+🔍 质量控制
+• 质检流程管理
+• 质检结果记录
+• 不合格品处理
+
+📊 生产看板
+• 按生产线分组显示
+• 生产状态实时更新
+• 异常情况及时提醒
+
+您可以通过"生产管理"菜单访问生产排班看板。</field>
+            <field name="category">production</field>
+            <field name="confidence_score">0.95</field>
+            <field name="is_resolved">True</field>
+        </record>
+
+        <record id="ai_response_order_help" model="ai.assistant">
+            <field name="name">订单帮助</field>
+            <field name="question">订单管理功能</field>
+            <field name="answer">📋 订单管理功能包括：
+
+💰 销售订单管理
+• 创建和编辑销售订单
+• 订单状态跟踪
+• 发货管理
+• 客户信息维护
+
+🛒 采购订单管理
+• 供应商询价
+• 采购订单创建
+• 收货验收
+• 付款管理
+
+📊 订单分析
+• 销售业绩统计
+• 订单完成率分析
+• 客户满意度跟踪
+
+🔄 订单流程
+• 从报价到发货的完整流程
+• 自动库存预留
+• 生产订单自动创建
+
+您可以通过"订单管理"菜单查看和管理所有订单。</field>
+            <field name="category">order</field>
+            <field name="confidence_score">0.95</field>
+            <field name="is_resolved">True</field>
+        </record>
+
+        <record id="ai_response_system_help" model="ai.assistant">
+            <field name="name">系统帮助</field>
+            <field name="question">如何使用系统</field>
+            <field name="answer">💡 系统使用指南：
+
+🚀 快速开始
+1. 从左侧菜单选择功能模块
+2. 使用搜索和筛选快速找到信息
+3. 点击记录查看详细信息
+4. 使用按钮执行操作
+
+📱 扫码功能
+• 在库存操作中点击"扫码操作"
+• 输入产品条码或名称
+• 设置数量后执行操作
+• 支持快速验证
+
+🤖 AI助手使用
+• 直接输入中文问题
+• 点击快捷查询按钮
+• 支持库存、生产、订单查询
+• 获得实时业务数据
+
+⚙️ 系统配置
+• 在"配置"菜单中设置产品信息
+• 配置物料清单(BOM)
+• 设置库存参数
+• 管理用户权限
+
+如有其他问题，随时可以问我！</field>
+            <field name="category">help</field>
+            <field name="confidence_score">1.0</field>
+            <field name="is_resolved">True</field>
+        </record>
+
+        <record id="ai_response_strip_products" model="ai.assistant">
+            <field name="name">Strip Medical产品介绍</field>
+            <field name="question">公司产品</field>
+            <field name="answer">🏥 南通斯瑞医用有限公司 Strict® 产品系列：
+
+📋 医用垫片系列 (Medical Pads)
+• SA-01: 酒精预处理垫片 (70%异丙醇, 65x30mm, 2层)
+• SA-628: 酒精预处理垫片 (70%异丙醇, 65x58mm, 4层)
+• SA-088: 医用垫片 (70%异丙醇, 65x56mm)
+• SA-098: 大型预处理垫片 (70%异丙醇, 140x180mm)
+• SC-592: 柔软沐浴湿巾 (保湿配方, 22x11cm)
+
+🧹 棉签棒系列 (Swab Sticks)
+• SA-653: 酒精棉签棒 (70%异丙醇, 100mm长)
+• SA-018: 酒精棉签棒 (70%异丙醇, 70mm长)
+• SB-663: 聚维酮碘棉签棒 (10%聚维酮碘, 100mm长)
+• SB-016: 聚维酮碘棉签棒 (10%聚维酮碘, 70mm长)
+
+💧 无菌生理盐水产品 (Sterile Saline Products)
+• SC-645: 无菌生理盐水清洁湿巾 (0.9%NaCl, 多种规格)
+• SC-207: 无菌生理盐水清洁管 (0.9%NaCl, 15ml/20ml/30ml)
+
+🏆 公司认证
+• ISO13485 &amp; ISO9001 质量体系认证
+• CE认证
+• FDA备案
+• 专业医用耗材制造商
+
+📞 联系信息
+• 地址: 江苏省南通市跃龙南路182号A座
+• 电话: (86)513.8551.2391
+• 邮箱: info.strip@stripmed.com
+• 网站: http://www.stripmed.com</field>
+            <field name="category">general</field>
+            <field name="confidence_score">1.0</field>
+            <field name="is_resolved">True</field>
+        </record>
+
+        <record id="ai_response_current_inventory" model="ai.assistant">
+            <field name="name">当前库存状况</field>
+            <field name="question">当前库存情况</field>
+            <field name="answer">📦 Strip Medical 当前库存状况：
+
+🏥 成品库存状况：
+🟢 库存充足产品：
+• SA-01 酒精预处理垫片: 库存充足 (目标库存: 5000片)
+• SA-628 酒精预处理垫片: 库存充足 (目标库存: 3000片)
+• SA-018 酒精棉签棒: 库存充足 (目标库存: 3000支)
+• SC-645 无菌生理盐水湿巾: 库存充足 (目标库存: 3000片)
+
+🟡 需要关注产品：
+• SA-088 医用垫片: 接近最低库存 (目标库存: 2000片)
+• SB-663 聚维酮碘棉签棒: 接近最低库存 (目标库存: 1500支)
+
+🔴 需要补货产品：
+• SA-098 大型预处理垫片: 库存偏低 (目标库存: 1000片)
+• SC-592 柔软沐浴湿巾: 库存偏低 (目标库存: 500包)
+
+🧪 原材料库存状况：
+🟢 化学原料充足：异丙醇、注射用水
+🟡 需要关注：聚维酮碘溶液、保湿剂配方
+🟠 纺织材料：各规格无纺布库存正常
+🟠 包装材料：铝箔包装袋、纸盒包装库存正常
+🟠 塑料材料：塑料棒、塑料管库存正常
+
+📊 库存建议：
+1. 优先安排SA-098和SC-592的生产计划
+2. 关注SA-088和SB-663的库存变化
+3. 建议提前7天安排原材料采购
+4. 重点关注聚维酮碘溶液的采购计划
+
+您可以通过"智能库存-库存管理"查看详细库存信息。</field>
+            <field name="category">inventory</field>
+            <field name="confidence_score">0.9</field>
+            <field name="is_resolved">True</field>
+        </record>
+
+        <record id="ai_response_raw_materials" model="ai.assistant">
+            <field name="name">原材料信息</field>
+            <field name="question">原材料</field>
+            <field name="answer">🧪 Strip Medical 原材料体系：
+
+📋 化学原料类：
+• 异丙醇 (70%医用级) - 用于酒精垫片和棉签棒
+• 聚维酮碘溶液 (10%) - 用于碘伏棉签棒
+• 氯化钠 (医用级) - 用于配制生理盐水
+• 注射用水 - 符合药典标准
+• 保湿剂配方 - 用于沐浴湿巾
+
+🧵 纺织材料类：
+• 无纺布 65x30mm - SA-01垫片专用
+• 无纺布 65x58mm - SA-628垫片专用
+• 无纺布 140x180mm - SA-098大型垫片专用
+• 无纺布 22x11cm (柔软型) - SC-592沐浴湿巾专用
+• 医用棉花头 - 棉签棒专用
+
+🔧 塑料材料类：
+• 塑料棒 100mm - 长棉签棒专用
+• 塑料棒 70mm - 短棉签棒专用
+• 塑料管 15ml/20ml/30ml - 生理盐水清洁管专用
+
+📦 包装材料类：
+• 铝箔包装袋 50x50mm - 垫片单片包装
+• 铝箔包装袋 (棉签棒专用) - 棉签棒单支包装
+• 纸盒包装 (200片/100片/50支装) - 外包装
+• 塑料包装袋 (8片装) - 沐浴湿巾包装
+
+🏭 主要供应商：
+• 江苏华康化工有限公司 - 化学原料
+• 苏州纺织材料股份有限公司 - 纺织材料
+• 上海包装制品有限公司 - 包装材料
+• 浙江塑料制品集团 - 塑料制品</field>
+            <field name="category">inventory</field>
+            <field name="confidence_score">0.95</field>
+            <field name="is_resolved">True</field>
+        </record>
+    </data>
+</odoo>

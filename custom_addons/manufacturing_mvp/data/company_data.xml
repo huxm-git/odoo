@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Strip Medical 公司信息配置 -->
+    <record id="base.main_company" model="res.company">
+        <field name="name">南通斯瑞医用有限公司</field>
+        <field name="street">江苏省南通市躍龙南路182号A座</field>
+        <field name="street2"></field>
+        <field name="city">南通市</field>
+        <field name="state_id" ref="base.state_cn_32"/>
+        <field name="zip">226006</field>
+        <field name="country_id" ref="base.cn"/>
+        <field name="phone">+86-513-8551-2391</field>
+        <field name="email">info.strip@stripmed.com</field>
+        <field name="website">http://www.stripmed.com</field>
+        <field name="vat">苏ICP备07508616号-1</field>
+        <field name="company_registry">苏食药监械生产许可</field>
+        <field name="report_header">Strict® - 南通斯瑞医用有限公司</field>
+        <field name="report_footer">NanTong Strip Medical Supply Co.,Ltd. | 江苏省南通市躍龙南路182号A座 | Tel: +86-513-8551-2391 | www.stripmed.com</field>
+        <field name="company_details">
+            <div style="text-align: center;">
+                <h2 style="color: #2E86AB; margin-bottom: 10px;">南通斯瑞医用有限公司</h2>
+                <h3 style="color: #A23B72; margin-bottom: 10px;">NanTong Strip Medical Supply Co.,Ltd.</h3>
+                <p style="color: #666; font-size: 14px; margin: 5px 0;">专业医用消毒产品制造商</p>
+                <p style="color: #666; font-size: 12px;">Professional Medical Disinfection Products Manufacturer</p>
+                <hr style="border: 1px solid #2E86AB; width: 50%; margin: 15px auto;"/>
+                <p style="color: #888; font-size: 11px;">
+                    地址：江苏省南通市躍龙南路182号A座 (邮编: 226006)<br/>
+                    电话：+86-513-8551-2391 | 传真：+86-513-8508-9339<br/>
+                    邮箱：info.strip@stripmed.com | 网站：www.stripmed.com
+                </p>
+            </div>
+        </field>
+        <field name="primary_color">#2E86AB</field>
+        <field name="secondary_color">#A23B72</field>
+        <field name="font">Roboto</field>
+    </record>
+
+    <!-- 更新公司合作伙伴信息 -->
+    <record id="base.main_partner" model="res.partner">
+        <field name="name">南通斯瑞医用有限公司</field>
+        <field name="is_company">True</field>
+        <field name="street">江苏省南通市躍龙南路182号A座</field>
+        <field name="street2"></field>
+        <field name="city">南通市</field>
+        <field name="state_id" ref="base.state_cn_32"/>
+        <field name="zip">226006</field>
+        <field name="country_id" ref="base.cn"/>
+        <field name="phone">+86-513-8551-2391</field>
+        <field name="email">info.strip@stripmed.com</field>
+        <field name="website">http://www.stripmed.com</field>
+        <field name="vat">苏ICP备07508616号-1</field>
+        <field name="company_registry">苏食药监械生产许可</field>
+        <field name="category_id" eval="[(6, 0, [ref('base.res_partner_category_0')])]"/>
+    </record>
+</odoo>

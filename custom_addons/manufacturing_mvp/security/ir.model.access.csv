@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_ai_assistant_user,ai.assistant.user,model_ai_assistant,base.group_user,1,1,1,0
+access_ai_assistant_manager,ai.assistant.manager,model_ai_assistant,base.group_system,1,1,1,1
+access_stock_scan_wizard_user,stock.scan.wizard.user,model_stock_scan_wizard,base.group_user,1,1,1,1

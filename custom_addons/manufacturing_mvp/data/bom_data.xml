@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- Strip Medical 产品的物料清单 (BOM) -->
+        
+        <!-- SA-01 酒精预处理垫片 BOM -->
+        <record id="bom_sa01_alcohol_prep_pad" model="mrp.bom">
+            <field name="product_tmpl_id" ref="product_alcohol_prep_pad_sa01"/>
+            <field name="product_uom_id" ref="uom.product_uom_unit"/>
+            <field name="product_qty">1.0</field>
+            <field name="type">normal</field>
+        </record>
+        
+        <record id="bom_line_sa01_nonwoven" model="mrp.bom.line">
+            <field name="product_id" ref="raw_material_nonwoven_65x30"/>
+            <field name="product_qty">2</field>
+            <field name="product_uom_id" ref="uom.product_uom_unit"/>
+            <field name="bom_id" ref="bom_sa01_alcohol_prep_pad"/>
+        </record>
+        
+        <record id="bom_line_sa01_alcohol" model="mrp.bom.line">
+            <field name="product_id" ref="raw_material_isopropyl_alcohol"/>
+            <field name="product_qty">0.002</field>
+            <field name="product_uom_id" ref="uom.product_uom_litre"/>
+            <field name="bom_id" ref="bom_sa01_alcohol_prep_pad"/>
+        </record>
+        
+        <record id="bom_line_sa01_pouch" model="mrp.bom.line">
+            <field name="product_id" ref="raw_material_aluminum_pouch_50x50"/>
+            <field name="product_qty">1</field>
+            <field name="product_uom_id" ref="uom.product_uom_unit"/>
+            <field name="bom_id" ref="bom_sa01_alcohol_prep_pad"/>
+        </record>
+        
+        <!-- SA-628 酒精预处理垫片 BOM -->
+        <record id="bom_sa628_alcohol_prep_pad" model="mrp.bom">
+            <field name="product_tmpl_id" ref="product_alcohol_prep_pad_sa628"/>
+            <field name="product_uom_id" ref="uom.product_uom_unit"/>
+            <field name="product_qty">1.0</field>
+            <field name="type">normal</field>
+        </record>
+        
+        <record id="bom_line_sa628_nonwoven" model="mrp.bom.line">
+            <field name="product_id" ref="raw_material_nonwoven_65x58"/>
+            <field name="product_qty">4</field>
+            <field name="product_uom_id" ref="uom.product_uom_unit"/>
+            <field name="bom_id" ref="bom_sa628_alcohol_prep_pad"/>
+        </record>
+        
+        <record id="bom_line_sa628_alcohol" model="mrp.bom.line">
+            <field name="product_id" ref="raw_material_isopropyl_alcohol"/>
+            <field name="product_qty">0.003</field>
+            <field name="product_uom_id" ref="uom.product_uom_litre"/>
+            <field name="bom_id" ref="bom_sa628_alcohol_prep_pad"/>
+        </record>
+        
+        <record id="bom_line_sa628_pouch" model="mrp.bom.line">
+            <field name="product_id" ref="raw_material_aluminum_pouch_50x50"/>
+            <field name="product_qty">1</field>
+            <field name="product_uom_id" ref="uom.product_uom_unit"/>
+            <field name="bom_id" ref="bom_sa628_alcohol_prep_pad"/>
+        </record>
+        
+        <!-- SA-653 酒精棉签棒 BOM -->
+        <record id="bom_sa653_alcohol_swabstick" model="mrp.bom">
+            <field name="product_tmpl_id" ref="product_alcohol_swabstick_sa653"/>
+            <field name="product_uom_id" ref="uom.product_uom_unit"/>
+            <field name="product_qty">1.0</field>
+            <field name="type">normal</field>
+        </record>
+        
+        <record id="bom_line_sa653_cotton" model="mrp.bom.line">
+            <field name="product_id" ref="raw_material_cotton_tips"/>
+            <field name="product_qty">2</field>
+            <field name="product_uom_id" ref="uom.product_uom_unit"/>
+            <field name="bom_id" ref="bom_sa653_alcohol_swabstick"/>
+        </record>
+        
+        <record id="bom_line_sa653_stick" model="mrp.bom.line">
+            <field name="product_id" ref="raw_material_plastic_stick_100mm"/>
+            <field name="product_qty">1</field>
+            <field name="product_uom_id" ref="uom.product_uom_unit"/>
+            <field name="bom_id" ref="bom_sa653_alcohol_swabstick"/>
+        </record>
+        
+        <record id="bom_line_sa653_alcohol" model="mrp.bom.line">
+            <field name="product_id" ref="raw_material_isopropyl_alcohol"/>
+            <field name="product_qty">0.001</field>
+            <field name="product_uom_id" ref="uom.product_uom_litre"/>
+            <field name="bom_id" ref="bom_sa653_alcohol_swabstick"/>
+        </record>
+        
+        <record id="bom_line_sa653_pouch" model="mrp.bom.line">
+            <field name="product_id" ref="raw_material_aluminum_pouch_swab"/>
+            <field name="product_qty">1</field>
+            <field name="product_uom_id" ref="uom.product_uom_unit"/>
+            <field name="bom_id" ref="bom_sa653_alcohol_swabstick"/>
+        </record>
+        
+        <!-- SB-663 聚维酮碘棉签棒 BOM -->
+        <record id="bom_sb663_povidone_swabstick" model="mrp.bom">
+            <field name="product_tmpl_id" ref="product_povidone_swabstick_sb663"/>
+            <field name="product_uom_id" ref="uom.product_uom_unit"/>
+            <field name="product_qty">1.0</field>
+            <field name="type">normal</field>
+        </record>
+        
+        <record id="bom_line_sb663_cotton" model="mrp.bom.line">
+            <field name="product_id" ref="raw_material_cotton_tips"/>
+            <field name="product_qty">2</field>
+            <field name="product_uom_id" ref="uom.product_uom_unit"/>
+            <field name="bom_id" ref="bom_sb663_povidone_swabstick"/>
+        </record>
+        
+        <record id="bom_line_sb663_stick" model="mrp.bom.line">
+            <field name="product_id" ref="raw_material_plastic_stick_100mm"/>
+            <field name="product_qty">1</field>
+            <field name="product_uom_id" ref="uom.product_uom_unit"/>
+            <field name="bom_id" ref="bom_sb663_povidone_swabstick"/>
+        </record>
+        
+        <record id="bom_line_sb663_povidone" model="mrp.bom.line">
+            <field name="product_id" ref="raw_material_povidone_iodine"/>
+            <field name="product_qty">0.001</field>
+            <field name="product_uom_id" ref="uom.product_uom_litre"/>
+            <field name="bom_id" ref="bom_sb663_povidone_swabstick"/>
+        </record>
+        
+        <record id="bom_line_sb663_pouch" model="mrp.bom.line">
+            <field name="product_id" ref="raw_material_aluminum_pouch_swab"/>
+            <field name="product_qty">1</field>
+            <field name="product_uom_id" ref="uom.product_uom_unit"/>
+            <field name="bom_id" ref="bom_sb663_povidone_swabstick"/>
+        </record>
+        
+        <!-- SC-645 无菌生理盐水清洁湿巾 BOM -->
+        <record id="bom_sc645_sterile_saline_wipe" model="mrp.bom">
+            <field name="product_tmpl_id" ref="product_sterile_saline_wipe_sc645"/>
+            <field name="product_uom_id" ref="uom.product_uom_unit"/>
+            <field name="product_qty">1.0</field>
+            <field name="type">normal</field>
+        </record>
+        
+        <record id="bom_line_sc645_nonwoven" model="mrp.bom.line">
+            <field name="product_id" ref="raw_material_nonwoven_65x30"/>
+            <field name="product_qty">1</field>
+            <field name="product_uom_id" ref="uom.product_uom_unit"/>
+            <field name="bom_id" ref="bom_sc645_sterile_saline_wipe"/>
+        </record>
+        
+        <record id="bom_line_sc645_nacl" model="mrp.bom.line">
+            <field name="product_id" ref="raw_material_sodium_chloride"/>
+            <field name="product_qty">0.0009</field>
+            <field name="product_uom_id" ref="uom.product_uom_kgm"/>
+            <field name="bom_id" ref="bom_sc645_sterile_saline_wipe"/>
+        </record>
+        
+        <record id="bom_line_sc645_water" model="mrp.bom.line">
+            <field name="product_id" ref="raw_material_water_injection"/>
+            <field name="product_qty">0.001</field>
+            <field name="product_uom_id" ref="uom.product_uom_litre"/>
+            <field name="bom_id" ref="bom_sc645_sterile_saline_wipe"/>
+        </record>
+        
+        <record id="bom_line_sc645_pouch" model="mrp.bom.line">
+            <field name="product_id" ref="raw_material_aluminum_pouch_50x50"/>
+            <field name="product_qty">1</field>
+            <field name="product_uom_id" ref="uom.product_uom_unit"/>
+            <field name="bom_id" ref="bom_sc645_sterile_saline_wipe"/>
+        </record>
+
+        <!-- SC-207 无菌生理盐水清洁管 BOM -->
+        <record id="bom_sc207_sterile_saline_tube" model="mrp.bom">
+            <field name="product_tmpl_id" ref="product_sterile_saline_tube_sc207"/>
+            <field name="product_uom_id" ref="uom.product_uom_unit"/>
+            <field name="product_qty">1.0</field>
+            <field name="type">normal</field>
+        </record>
+
+        <record id="bom_line_sc207_tube" model="mrp.bom.line">
+            <field name="product_id" ref="raw_material_plastic_tube_15ml"/>
+            <field name="product_qty">1</field>
+            <field name="product_uom_id" ref="uom.product_uom_unit"/>
+            <field name="bom_id" ref="bom_sc207_sterile_saline_tube"/>
+        </record>
+
+        <record id="bom_line_sc207_nacl" model="mrp.bom.line">
+            <field name="product_id" ref="raw_material_sodium_chloride"/>
+            <field name="product_qty">0.135</field>
+            <field name="product_uom_id" ref="uom.product_uom_kgm"/>
+            <field name="bom_id" ref="bom_sc207_sterile_saline_tube"/>
+        </record>
+
+        <record id="bom_line_sc207_water" model="mrp.bom.line">
+            <field name="product_id" ref="raw_material_water_injection"/>
+            <field name="product_qty">0.015</field>
+            <field name="product_uom_id" ref="uom.product_uom_litre"/>
+            <field name="bom_id" ref="bom_sc207_sterile_saline_tube"/>
+        </record>
+
+        <!-- SC-592 柔软沐浴湿巾 BOM -->
+        <record id="bom_sc592_soft_bath_wipes" model="mrp.bom">
+            <field name="product_tmpl_id" ref="product_soft_bath_wipes_sc592"/>
+            <field name="product_uom_id" ref="uom.product_uom_unit"/>
+            <field name="product_qty">8.0</field>
+            <field name="type">normal</field>
+        </record>
+
+        <record id="bom_line_sc592_nonwoven" model="mrp.bom.line">
+            <field name="product_id" ref="raw_material_nonwoven_bath"/>
+            <field name="product_qty">8</field>
+            <field name="product_uom_id" ref="uom.product_uom_unit"/>
+            <field name="bom_id" ref="bom_sc592_soft_bath_wipes"/>
+        </record>
+
+        <record id="bom_line_sc592_moisturizer" model="mrp.bom.line">
+            <field name="product_id" ref="raw_material_moisturizer"/>
+            <field name="product_qty">0.05</field>
+            <field name="product_uom_id" ref="uom.product_uom_litre"/>
+            <field name="bom_id" ref="bom_sc592_soft_bath_wipes"/>
+        </record>
+
+        <record id="bom_line_sc592_package" model="mrp.bom.line">
+            <field name="product_id" ref="raw_material_plastic_bag_8pack"/>
+            <field name="product_qty">1</field>
+            <field name="product_uom_id" ref="uom.product_uom_unit"/>
+            <field name="bom_id" ref="bom_sc592_soft_bath_wipes"/>
+        </record>
+
+        <!-- SA-088 医用垫片 BOM -->
+        <record id="bom_sa088_medical_pad" model="mrp.bom">
+            <field name="product_tmpl_id" ref="product_medical_pad_sa088"/>
+            <field name="product_uom_id" ref="uom.product_uom_unit"/>
+            <field name="product_qty">1.0</field>
+            <field name="type">normal</field>
+        </record>
+
+        <record id="bom_line_sa088_nonwoven" model="mrp.bom.line">
+            <field name="product_id" ref="raw_material_nonwoven_65x58"/>
+            <field name="product_qty">1</field>
+            <field name="product_uom_id" ref="uom.product_uom_unit"/>
+            <field name="bom_id" ref="bom_sa088_medical_pad"/>
+        </record>
+
+        <record id="bom_line_sa088_alcohol" model="mrp.bom.line">
+            <field name="product_id" ref="raw_material_isopropyl_alcohol"/>
+            <field name="product_qty">0.003</field>
+            <field name="product_uom_id" ref="uom.product_uom_litre"/>
+            <field name="bom_id" ref="bom_sa088_medical_pad"/>
+        </record>
+
+        <record id="bom_line_sa088_pouch" model="mrp.bom.line">
+            <field name="product_id" ref="raw_material_aluminum_pouch_50x50"/>
+            <field name="product_qty">1</field>
+            <field name="product_uom_id" ref="uom.product_uom_unit"/>
+            <field name="bom_id" ref="bom_sa088_medical_pad"/>
+        </record>
+
+        <!-- SA-098 大型预处理垫片 BOM -->
+        <record id="bom_sa098_large_prep_pad" model="mrp.bom">
+            <field name="product_tmpl_id" ref="product_large_prep_pad_sa098"/>
+            <field name="product_uom_id" ref="uom.product_uom_unit"/>
+            <field name="product_qty">1.0</field>
+            <field name="type">normal</field>
+        </record>
+
+        <record id="bom_line_sa098_nonwoven" model="mrp.bom.line">
+            <field name="product_id" ref="raw_material_nonwoven_large"/>
+            <field name="product_qty">1</field>
+            <field name="product_uom_id" ref="uom.product_uom_unit"/>
+            <field name="bom_id" ref="bom_sa098_large_prep_pad"/>
+        </record>
+
+        <record id="bom_line_sa098_alcohol" model="mrp.bom.line">
+            <field name="product_id" ref="raw_material_isopropyl_alcohol"/>
+            <field name="product_qty">0.008</field>
+            <field name="product_uom_id" ref="uom.product_uom_litre"/>
+            <field name="bom_id" ref="bom_sa098_large_prep_pad"/>
+        </record>
+
+        <record id="bom_line_sa098_pouch" model="mrp.bom.line">
+            <field name="product_id" ref="raw_material_aluminum_pouch_50x50"/>
+            <field name="product_qty">1</field>
+            <field name="product_uom_id" ref="uom.product_uom_unit"/>
+            <field name="bom_id" ref="bom_sa098_large_prep_pad"/>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- 主菜单 -->
+    <menuitem id="menu_manufacturing_mvp_root" 
+              name="🏭 智能制造MVP" 
+              sequence="10"/>
+
+    <!-- 库存管理菜单 -->
+    <menuitem id="menu_manufacturing_mvp_inventory" 
+              name="📦 智能库存" 
+              parent="menu_manufacturing_mvp_root" 
+              sequence="10"/>
+    
+    <menuitem id="menu_product_stock_management" 
+              name="库存管理" 
+              parent="menu_manufacturing_mvp_inventory" 
+              action="action_product_stock_management" 
+              sequence="10"/>
+    
+    <menuitem id="menu_stock_scan_operations" 
+              name="扫码操作" 
+              parent="menu_manufacturing_mvp_inventory" 
+              action="action_stock_scan_operations" 
+              sequence="20"/>
+
+    <!-- 生产管理菜单 -->
+    <menuitem id="menu_manufacturing_mvp_production" 
+              name="🏭 生产管理" 
+              parent="menu_manufacturing_mvp_root" 
+              sequence="20"/>
+    
+    <menuitem id="menu_mrp_production_schedule" 
+              name="生产排班看板" 
+              parent="menu_manufacturing_mvp_production" 
+              action="action_mrp_production_schedule_board" 
+              sequence="10"/>
+    
+    <menuitem id="menu_mrp_production_orders"
+              name="生产订单"
+              parent="menu_manufacturing_mvp_production"
+              action="action_mrp_production_mvp"
+              sequence="20"/>
+
+    <!-- AI助手菜单 -->
+    <menuitem id="menu_manufacturing_mvp_ai" 
+              name="🤖 AI助手" 
+              parent="menu_manufacturing_mvp_root" 
+              sequence="30"/>
+    
+    <menuitem id="menu_ai_assistant_chat" 
+              name="智能助手" 
+              parent="menu_manufacturing_mvp_ai" 
+              action="action_ai_assistant_chat" 
+              sequence="10"/>
+    
+    <menuitem id="menu_ai_assistant_history" 
+              name="对话记录" 
+              parent="menu_manufacturing_mvp_ai" 
+              action="action_ai_assistant_history" 
+              sequence="20"/>
+
+    <!-- 订单管理菜单 -->
+    <menuitem id="menu_manufacturing_mvp_orders" 
+              name="📋 订单管理" 
+              parent="menu_manufacturing_mvp_root" 
+              sequence="40"/>
+    
+    <menuitem id="menu_sale_orders_mvp" 
+              name="销售订单" 
+              parent="menu_manufacturing_mvp_orders" 
+              action="sale.action_orders" 
+              sequence="10"/>
+    
+    <menuitem id="menu_purchase_orders_mvp" 
+              name="采购订单" 
+              parent="menu_manufacturing_mvp_orders" 
+              action="purchase.purchase_rfq" 
+              sequence="20"/>
+
+    <!-- 配置菜单 -->
+    <menuitem id="menu_manufacturing_mvp_config" 
+              name="⚙️ 配置" 
+              parent="menu_manufacturing_mvp_root" 
+              sequence="50"/>
+    
+    <menuitem id="menu_product_config_mvp" 
+              name="产品配置" 
+              parent="menu_manufacturing_mvp_config" 
+              action="product.product_template_action" 
+              sequence="10"/>
+    
+    <menuitem id="menu_bom_config_mvp" 
+              name="物料清单" 
+              parent="menu_manufacturing_mvp_config" 
+              action="mrp.mrp_bom_form_action" 
+              sequence="20"/>
+
+    <!-- 快速访问菜单项 -->
+    <record id="menu_quick_access_dashboard" model="ir.ui.menu">
+        <field name="name">📊 快速概览</field>
+        <field name="parent_id" ref="menu_manufacturing_mvp_root"/>
+        <field name="sequence">5</field>
+        <field name="action" ref="action_ai_assistant_chat"/>
+    </record>
+</odoo>
