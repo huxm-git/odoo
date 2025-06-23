@@ -6,22 +6,40 @@
               sequence="10"/>
 
     <!-- 库存管理菜单 -->
-    <menuitem id="menu_manufacturing_mvp_inventory" 
-              name="📦 智能库存" 
-              parent="menu_manufacturing_mvp_root" 
+    <menuitem id="menu_manufacturing_mvp_inventory"
+              name="📦 智能库存"
+              parent="menu_manufacturing_mvp_root"
               sequence="10"/>
-    
-    <menuitem id="menu_product_stock_management" 
-              name="库存管理" 
-              parent="menu_manufacturing_mvp_inventory" 
-              action="action_product_stock_management" 
+
+    <menuitem id="menu_finished_products_stock"
+              name="🆕 成品库存"
+              parent="menu_manufacturing_mvp_inventory"
+              action="action_finished_products_stock"
               sequence="10"/>
-    
-    <menuitem id="menu_stock_scan_operations" 
-              name="扫码操作" 
-              parent="menu_manufacturing_mvp_inventory" 
-              action="action_stock_scan_operations" 
+
+    <menuitem id="menu_raw_materials_stock"
+              name="🆕 原材料库存"
+              parent="menu_manufacturing_mvp_inventory"
+              action="action_raw_materials_stock"
               sequence="20"/>
+
+    <menuitem id="menu_all_products_stock"
+              name="全部库存"
+              parent="menu_manufacturing_mvp_inventory"
+              action="action_all_products_stock"
+              sequence="30"/>
+
+    <menuitem id="menu_stock_quant_details"
+              name="库存数量详情"
+              parent="menu_manufacturing_mvp_inventory"
+              action="action_stock_quant_mvp"
+              sequence="40"/>
+
+    <menuitem id="menu_stock_scan_operations"
+              name="扫码操作"
+              parent="menu_manufacturing_mvp_inventory"
+              action="action_stock_scan_operations"
+              sequence="50"/>
 
     <!-- 生产管理菜单 -->
     <menuitem id="menu_manufacturing_mvp_production" 

@@ -56,6 +56,7 @@
         # Data
         'data/demo_data.xml',
         'data/bom_data.xml',
+        'data/product_routes.xml',
         'data/ai_responses.xml',
         
         # Views
@@ -69,7 +70,6 @@
         'wizard/stock_scan_wizard_views.xml',
     ],
     'demo': [
-        'data/demo_data.xml',
     ],
     'assets': {
         'web.assets_backend': [

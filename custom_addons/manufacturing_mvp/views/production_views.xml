@@ -32,6 +32,20 @@
                         type="object"
                         class="btn-success"
                         invisible="production_stage != 'on_hold'"/>
+                <button name="action_complete_production"
+                        string="✅ 完成生产"
+                        type="object"
+                        class="btn-success"
+                        invisible="state == 'done' or production_stage == 'completed'"/>
+                <button name="action_view_stock_moves"
+                        string="📦 库存移动"
+                        type="object"
+                        class="btn-outline-primary"
+                        invisible="state == 'draft'"/>
+                <button name="action_view_stock_quants"
+                        string="📊 产品库存"
+                        type="object"
+                        class="btn-outline-info"/>
             </xpath>
             
             <xpath expr="//field[@name='product_qty']" position="after">
@@ -110,8 +124,14 @@
                                                name="action_quality_check" type="object" class="dropdown-item">🔍 质量检查</a>
                                             <a t-if="record.production_stage.raw_value == 'in_production'" 
                                                name="action_pause_production" type="object" class="dropdown-item">⏸️ 暂停生产</a>
-                                            <a t-if="record.production_stage.raw_value == 'on_hold'" 
+                                            <a t-if="record.production_stage.raw_value == 'on_hold'"
                                                name="action_resume_production" type="object" class="dropdown-item">▶️ 恢复生产</a>
+                                            <a t-if="record.state.raw_value != 'done' and record.production_stage.raw_value != 'completed'"
+                                               name="action_complete_production" type="object" class="dropdown-item">✅ 完成生产</a>
+                                            <div class="dropdown-divider"/>
+                                            <a t-if="record.state.raw_value != 'draft'"
+                                               name="action_view_stock_moves" type="object" class="dropdown-item">📦 库存移动</a>
+                                            <a name="action_view_stock_quants" type="object" class="dropdown-item">📊 产品库存</a>
                                         </div>
                                     </div>
                                 </div>

@@ -129,27 +129,157 @@
         </field>
     </record>
 
-    <!-- 库存管理动作 -->
-    <record id="action_product_stock_management" model="ir.actions.act_window">
-        <field name="name">智能库存管理</field>
+    <!-- 产品库存列表视图 -->
+    <record id="view_product_template_stock_list" model="ir.ui.view">
+        <field name="name">product.template.stock.list</field>
+        <field name="model">product.template</field>
+        <field name="arch" type="xml">
+            <list string="产品库存" create="false" edit="false">
+                <field name="name" string="产品名称"/>
+                <field name="default_code" string="产品编号"/>
+                <field name="categ_id" string="产品类别"/>
+                <field name="qty_available" string="现有数量" widget="float"/>
+                <field name="virtual_available" string="预测数量" widget="float"/>
+                <field name="uom_id" string="单位"/>
+                <field name="sale_ok" string="可销售" widget="boolean"/>
+                <field name="purchase_ok" string="可采购" widget="boolean"/>
+                <button name="action_view_stock_moves"
+                        string="📦 库存移动"
+                        type="object"
+                        class="btn-outline-primary"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- 产品库存看板视图 -->
+    <record id="view_product_template_stock_kanban" model="ir.ui.view">
+        <field name="name">product.template.stock.kanban</field>
+        <field name="model">product.template</field>
+        <field name="arch" type="xml">
+            <kanban class="o_kanban_small_column">
+                <field name="name"/>
+                <field name="qty_available"/>
+                <field name="virtual_available"/>
+                <field name="uom_id"/>
+                <field name="sale_ok"/>
+                <field name="purchase_ok"/>
+                <templates>
+                    <t t-name="card">
+                        <div class="oe_kanban_card oe_kanban_global_click">
+                            <div class="oe_kanban_content">
+                                <div class="o_kanban_record_top">
+                                    <div class="o_kanban_record_headings">
+                                        <strong class="o_kanban_record_title">
+                                            <field name="name"/>
+                                        </strong>
+                                    </div>
+                                </div>
+                                <div class="o_kanban_record_body">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <strong>现有库存:</strong><br/>
+                                            <span class="text-primary">
+                                                <field name="qty_available"/> <field name="uom_id"/>
+                                            </span>
+                                        </div>
+                                        <div class="col-6">
+                                            <strong>预测库存:</strong><br/>
+                                            <span class="text-info">
+                                                <field name="virtual_available"/> <field name="uom_id"/>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="o_kanban_tags_section mt-2">
+                                        <span t-if="record.sale_ok.raw_value" class="badge badge-success">可销售</span>
+                                        <span t-if="record.purchase_ok.raw_value" class="badge badge-info">可采购</span>
+                                    </div>
+                                </div>
+                                <div class="o_kanban_record_bottom">
+                                    <div class="oe_kanban_bottom_left">
+                                        <button name="action_view_stock_moves"
+                                                string="📦 库存移动"
+                                                type="object"
+                                                class="btn btn-sm btn-outline-primary"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!-- 成品库存管理动作 -->
+    <record id="action_finished_products_stock" model="ir.actions.act_window">
+        <field name="name">🆕 成品库存</field>
         <field name="res_model">product.template</field>
-        <field name="view_mode">kanban,list,form</field>
+        <field name="view_mode">list,kanban,form</field>
+        <field name="view_id" ref="view_product_template_stock_list"/>
+        <field name="domain">[('sale_ok', '=', True), ('purchase_ok', '=', False)]</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Strict®系列成品库存管理
+            </p>
+            <p>
+                在这里您可以查看所有可销售的Strict®产品库存状态
+            </p>
+        </field>
+    </record>
+
+    <!-- 原材料库存管理动作 -->
+    <record id="action_raw_materials_stock" model="ir.actions.act_window">
+        <field name="name">🆕 原材料库存</field>
+        <field name="res_model">product.template</field>
+        <field name="view_mode">list,kanban,form</field>
+        <field name="view_id" ref="view_product_template_stock_list"/>
+        <field name="domain">[('purchase_ok', '=', True), ('sale_ok', '=', False)]</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                原材料库存管理
+            </p>
+            <p>
+                在这里您可以查看所有原材料和组件的库存状态
+            </p>
+        </field>
+    </record>
+
+    <!-- 全部库存管理动作 -->
+    <record id="action_all_products_stock" model="ir.actions.act_window">
+        <field name="name">全部库存</field>
+        <field name="res_model">product.template</field>
+        <field name="view_mode">list,kanban,form</field>
+        <field name="view_id" ref="view_product_template_stock_list"/>
         <field name="domain">[]</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Strip Medical产品库存总览
+            </p>
+            <p>
+                在这里您可以查看所有Strip Medical产品的库存状态
+            </p>
+        </field>
+    </record>
+
+    <!-- 库存数量视图 -->
+    <record id="action_stock_quant_mvp" model="ir.actions.act_window">
+        <field name="name">库存数量详情</field>
+        <field name="res_model">stock.quant</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[('quantity', '>', 0)]</field>
         <field name="context">{
-            'search_default_consumable': 1,
+            'search_default_group_by_product_id': 1,
+            'search_default_group_by_location_id': 1,
         }</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
-                开始您的智能库存管理！
+                详细库存数量查看
             </p>
             <p>
-                在这里您可以：
-                <ul>
-                    <li>📦 查看产品库存状态</li>
-                    <li>⚠️ 监控库存预警</li>
-                    <li>📊 分析库存趋势</li>
-                    <li>🔄 管理库存调整</li>
-                </ul>
+                在这里您可以查看每个产品在不同位置的具体库存数量
             </p>
         </field>
     </record>

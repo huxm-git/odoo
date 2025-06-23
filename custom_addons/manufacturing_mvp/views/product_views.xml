@@ -29,6 +29,11 @@
                                 type="object"
                                 class="btn-secondary"
                                 invisible="not bom_ids"/>
+                        <button name="setup_manufacturing_routes"
+                                string="⚙️ 配置制造路由"
+                                type="object"
+                                class="btn-info"
+                                invisible="not sale_ok or purchase_ok"/>
                     </group>
                 </page>
             </xpath>
@@ -153,6 +158,18 @@
                     <li>生产计划创建</li>
                 </ul>
             </p>
+        </field>
+    </record>
+
+    <!-- 批量配置制造路由动作 -->
+    <record id="action_setup_all_manufacturing_routes" model="ir.actions.server">
+        <field name="name">⚙️ 批量配置制造路由</field>
+        <field name="model_id" ref="product.model_product_template"/>
+        <field name="binding_model_id" ref="product.model_product_template"/>
+        <field name="binding_view_types">list</field>
+        <field name="state">code</field>
+        <field name="code">
+action = model.setup_all_manufacturing_routes()
         </field>
     </record>
 </odoo>

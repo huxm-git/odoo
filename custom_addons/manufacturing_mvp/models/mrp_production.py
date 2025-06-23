@@ -159,24 +159,63 @@ class MrpProduction(models.Model):
         }
     
     def action_complete_production(self):
-        """完成生产"""
+        """完成生产并处理库存转移"""
         self.ensure_one()
-        
+
         if self.quality_check_required and not self.quality_check_passed:
             raise UserError(_('需要先通过质量检查才能完成生产'))
-        
-        # 更新生产阶段
-        self.production_stage = 'completed'
-        
-        return {
-            'type': 'ir.actions.client',
-            'tag': 'display_notification',
-            'params': {
-                'title': _('生产完成'),
-                'message': _('生产订单 %s 已完成') % self.name,
-                'type': 'success',
+
+        # 检查是否已经完成
+        if self.state == 'done':
+            return {
+                'type': 'ir.actions.client',
+                'tag': 'display_notification',
+                'params': {
+                    'title': _('提示'),
+                    'message': _('生产订单 %s 已经完成') % self.name,
+                    'type': 'info',
+                }
             }
-        }
+
+        try:
+            # 设置生产数量
+            if not self.qty_producing:
+                self.qty_producing = self.product_qty
+
+            # 调用Odoo标准的完成方法，这会自动处理库存转移
+            result = self.button_mark_done()
+
+            # 更新我们的自定义字段
+            self.write({
+                'production_stage': 'completed',
+                'actual_hours': self.estimated_hours,  # 在实际应用中这应该是实际记录的工时
+                'actual_workers': self.scheduled_workers,
+            })
+
+            # 如果标准方法返回了向导或其他动作，返回它
+            if result and isinstance(result, dict):
+                return result
+
+            return {
+                'type': 'ir.actions.client',
+                'tag': 'display_notification',
+                'params': {
+                    'title': _('生产完成'),
+                    'message': _('生产订单 %s 已完成，库存已更新') % self.name,
+                    'type': 'success',
+                }
+            }
+
+        except Exception as e:
+            return {
+                'type': 'ir.actions.client',
+                'tag': 'display_notification',
+                'params': {
+                    'title': _('生产完成失败'),
+                    'message': _('无法完成生产订单 %s: %s') % (self.name, str(e)),
+                    'type': 'danger',
+                }
+            }
     
     def action_quality_check(self):
         """质量检查"""
@@ -248,3 +287,89 @@ class MrpProduction(models.Model):
             'production_stage': dict(self._fields['production_stage'].selection)[self.production_stage],
             'priority': dict(self._fields['priority_level'].selection)[self.priority_level],
         }
+
+    def action_view_stock_moves(self):
+        """查看库存移动"""
+        self.ensure_one()
+
+        # 获取所有相关的库存移动
+        all_moves = self.move_raw_ids | self.move_finished_ids | self.move_byproduct_ids
+
+        if not all_moves:
+            return {
+                'type': 'ir.actions.client',
+                'tag': 'display_notification',
+                'params': {
+                    'title': _('提示'),
+                    'message': _('此生产订单没有库存移动记录'),
+                    'type': 'info',
+                }
+            }
+
+        return {
+            'type': 'ir.actions.act_window',
+            'name': _('库存移动 - %s') % self.name,
+            'res_model': 'stock.move',
+            'view_mode': 'list,form',
+            'domain': [('id', 'in', all_moves.ids)],
+            'context': {
+                'search_default_group_by_location_id': 1,
+            },
+            'target': 'current',
+        }
+
+    def action_view_stock_quants(self):
+        """查看相关产品的库存"""
+        self.ensure_one()
+
+        # 获取所有相关产品
+        products = self.product_id
+        if self.move_raw_ids:
+            products |= self.move_raw_ids.mapped('product_id')
+        if self.move_byproduct_ids:
+            products |= self.move_byproduct_ids.mapped('product_id')
+
+        return {
+            'type': 'ir.actions.act_window',
+            'name': _('产品库存 - %s') % self.name,
+            'res_model': 'stock.quant',
+            'view_mode': 'list,form',
+            'domain': [('product_id', 'in', products.ids), ('quantity', '>', 0)],
+            'context': {
+                'search_default_group_by_product_id': 1,
+                'search_default_group_by_location_id': 1,
+            },
+            'target': 'current',
+        }
+
+    def get_stock_summary(self):
+        """获取库存摘要"""
+        self.ensure_one()
+
+        summary = {
+            'finished_product': {
+                'name': self.product_id.name,
+                'qty_available': self.product_id.qty_available,
+                'qty_produced': self.qty_produced,
+                'uom': self.product_id.uom_id.name,
+            },
+            'raw_materials': [],
+            'stock_moves': {
+                'raw_moves_count': len(self.move_raw_ids),
+                'finished_moves_count': len(self.move_finished_ids),
+                'done_moves_count': len((self.move_raw_ids | self.move_finished_ids).filtered(lambda m: m.state == 'done')),
+            }
+        }
+
+        # 原材料库存信息
+        for move in self.move_raw_ids:
+            summary['raw_materials'].append({
+                'name': move.product_id.name,
+                'required_qty': move.product_uom_qty,
+                'consumed_qty': move.quantity,
+                'available_qty': move.product_id.qty_available,
+                'uom': move.product_uom.name,
+                'state': move.state,
+            })
+
+        return summary

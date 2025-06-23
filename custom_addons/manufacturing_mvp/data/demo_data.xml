@@ -48,12 +48,14 @@
             <field name="parent_id" ref="categ_raw_materials"/>
         </record>
 
-        <!-- Strip Medical 成品系列 - 这些是最终销售产品 -->
+        <!-- Strip Medical 成品系列 - 这些是最终销售产品，需要跟踪库存 -->
 
         <!-- 医用垫片系列 -->
         <record id="product_alcohol_prep_pad_sa01" model="product.template">
             <field name="name">Strict® 酒精预处理垫片 SA-01</field>
+            <field name="default_code">SA-01</field>
             <field name="type">consu</field>
+            <field name="is_storable">True</field>
             <field name="categ_id" ref="categ_medical_pads"/>
             <field name="barcode">SM001SA01</field>
             <field name="list_price">0.15</field>
@@ -71,7 +73,9 @@
 
         <record id="product_alcohol_prep_pad_sa628" model="product.template">
             <field name="name">Strict® 酒精预处理垫片 SA-628</field>
+            <field name="default_code">SA-628</field>
             <field name="type">consu</field>
+            <field name="is_storable">True</field>
             <field name="categ_id" ref="categ_medical_pads"/>
             <field name="barcode">SM002SA628</field>
             <field name="list_price">0.25</field>
@@ -89,7 +93,9 @@
 
         <record id="product_medical_pad_sa088" model="product.template">
             <field name="name">Strict® 医用垫片 SA-088</field>
+            <field name="default_code">SA-088</field>
             <field name="type">consu</field>
+            <field name="is_storable">True</field>
             <field name="categ_id" ref="categ_medical_pads"/>
             <field name="barcode">SM003SA088</field>
             <field name="list_price">0.35</field>
@@ -107,7 +113,9 @@
 
         <record id="product_large_prep_pad_sa098" model="product.template">
             <field name="name">Strict® 大型预处理垫片 SA-098</field>
+            <field name="default_code">SA-098</field>
             <field name="type">consu</field>
+            <field name="is_storable">True</field>
             <field name="categ_id" ref="categ_medical_pads"/>
             <field name="barcode">SM004SA098</field>
             <field name="list_price">0.85</field>
@@ -125,7 +133,9 @@
 
         <record id="product_soft_bath_wipes_sc592" model="product.template">
             <field name="name">Strict® 柔软沐浴湿巾 SC-592</field>
+            <field name="default_code">SC-592</field>
             <field name="type">consu</field>
+            <field name="is_storable">True</field>
             <field name="categ_id" ref="categ_medical_pads"/>
             <field name="barcode">SM005SC592</field>
             <field name="list_price">1.20</field>
@@ -144,7 +154,9 @@
         <!-- 棉签棒系列 -->
         <record id="product_alcohol_swabstick_sa653" model="product.template">
             <field name="name">Strict® 酒精棉签棒 SA-653</field>
+            <field name="default_code">SA-653</field>
             <field name="type">consu</field>
+            <field name="is_storable">True</field>
             <field name="categ_id" ref="categ_swab_sticks"/>
             <field name="barcode">SM006SA653</field>
             <field name="list_price">0.45</field>
@@ -162,7 +174,9 @@
 
         <record id="product_alcohol_swabstick_sa018" model="product.template">
             <field name="name">Strict® 酒精棉签棒 SA-018</field>
+            <field name="default_code">SA-018</field>
             <field name="type">consu</field>
+            <field name="is_storable">True</field>
             <field name="categ_id" ref="categ_swab_sticks"/>
             <field name="barcode">SM007SA018</field>
             <field name="list_price">0.35</field>
@@ -180,7 +194,9 @@
 
         <record id="product_povidone_swabstick_sb663" model="product.template">
             <field name="name">Strict® 聚维酮碘棉签棒 SB-663</field>
+            <field name="default_code">SB-663</field>
             <field name="type">consu</field>
+            <field name="is_storable">True</field>
             <field name="categ_id" ref="categ_swab_sticks"/>
             <field name="barcode">SM008SB663</field>
             <field name="list_price">0.65</field>
@@ -198,7 +214,9 @@
 
         <record id="product_povidone_swabstick_sb016" model="product.template">
             <field name="name">Strict® 聚维酮碘棉签棒 SB-016</field>
+            <field name="default_code">SB-016</field>
             <field name="type">consu</field>
+            <field name="is_storable">True</field>
             <field name="categ_id" ref="categ_swab_sticks"/>
             <field name="barcode">SM009SB016</field>
             <field name="list_price">0.55</field>
@@ -217,7 +235,9 @@
         <!-- 无菌生理盐水产品系列 -->
         <record id="product_sterile_saline_wipe_sc645" model="product.template">
             <field name="name">Strict® 无菌生理盐水清洁湿巾 SC-645</field>
+            <field name="default_code">SC-645</field>
             <field name="type">consu</field>
+            <field name="is_storable">True</field>
             <field name="categ_id" ref="categ_sterile_saline"/>
             <field name="barcode">SM010SC645</field>
             <field name="list_price">0.30</field>
@@ -235,7 +255,9 @@
 
         <record id="product_sterile_saline_tube_sc207" model="product.template">
             <field name="name">Strict® 无菌生理盐水清洁管 SC-207</field>
+            <field name="default_code">SC-207</field>
             <field name="type">consu</field>
+            <field name="is_storable">True</field>
             <field name="categ_id" ref="categ_sterile_saline"/>
             <field name="barcode">SM011SC207</field>
             <field name="list_price">1.50</field>
@@ -251,12 +273,14 @@
             <field name="purchase_ok">False</field>
         </record>
 
-        <!-- 原材料产品系列 -->
+        <!-- 原材料产品系列 - 所有原材料都需要跟踪库存 -->
 
         <!-- 化学原料 -->
         <record id="raw_material_isopropyl_alcohol" model="product.template">
             <field name="name">异丙醇 (70%医用级)</field>
+            <field name="default_code">RM001</field>
             <field name="type">consu</field>
+            <field name="is_storable">True</field>
             <field name="categ_id" ref="categ_chemical_materials"/>
             <field name="barcode">RM001IPA70</field>
             <field name="list_price">12.50</field>
@@ -274,7 +298,9 @@
 
         <record id="raw_material_povidone_iodine" model="product.template">
             <field name="name">聚维酮碘溶液 (10%)</field>
+            <field name="default_code">RM002</field>
             <field name="type">consu</field>
+            <field name="is_storable">True</field>
             <field name="categ_id" ref="categ_chemical_materials"/>
             <field name="barcode">RM002PVI10</field>
             <field name="list_price">25.00</field>
@@ -292,7 +318,9 @@
 
         <record id="raw_material_sodium_chloride" model="product.template">
             <field name="name">氯化钠 (医用级)</field>
+            <field name="default_code">RM003</field>
             <field name="type">consu</field>
+            <field name="is_storable">True</field>
             <field name="categ_id" ref="categ_chemical_materials"/>
             <field name="barcode">RM003NACL</field>
             <field name="list_price">8.00</field>
@@ -310,7 +338,9 @@
 
         <record id="raw_material_water_injection" model="product.template">
             <field name="name">注射用水</field>
+            <field name="default_code">RM004</field>
             <field name="type">consu</field>
+            <field name="is_storable">True</field>
             <field name="categ_id" ref="categ_chemical_materials"/>
             <field name="barcode">RM004WFI</field>
             <field name="list_price">3.50</field>
@@ -328,7 +358,9 @@
 
         <record id="raw_material_moisturizer" model="product.template">
             <field name="name">保湿剂配方</field>
+            <field name="default_code">RM005</field>
             <field name="type">consu</field>
+            <field name="is_storable">True</field>
             <field name="categ_id" ref="categ_chemical_materials"/>
             <field name="barcode">RM005MOIST</field>
             <field name="list_price">15.00</field>
@@ -347,7 +379,9 @@
         <!-- 纺织材料 -->
         <record id="raw_material_nonwoven_65x30" model="product.template">
             <field name="name">无纺布 65x30mm</field>
+            <field name="default_code">RM006</field>
             <field name="type">consu</field>
+            <field name="is_storable">True</field>
             <field name="categ_id" ref="categ_textile_materials"/>
             <field name="barcode">RM006NW6530</field>
             <field name="list_price">0.02</field>
@@ -359,13 +393,15 @@
             <field name="description">医用无纺布，规格65x30mm，用于SA-01垫片生产</field>
             <field name="uom_id" ref="uom.product_uom_unit"/>
             <field name="uom_po_id" ref="uom.product_uom_unit"/>
-                    <field name="sale_ok">False</field>
+            <field name="sale_ok">False</field>
             <field name="purchase_ok">True</field>
         </record>
 
         <record id="raw_material_nonwoven_65x58" model="product.template">
             <field name="name">无纺布 65x58mm</field>
+            <field name="default_code">RM007</field>
             <field name="type">consu</field>
+            <field name="is_storable">True</field>
             <field name="categ_id" ref="categ_textile_materials"/>
             <field name="barcode">RM007NW6558</field>
             <field name="list_price">0.035</field>
@@ -377,13 +413,15 @@
             <field name="description">医用无纺布，规格65x58mm，用于SA-628垫片生产</field>
             <field name="uom_id" ref="uom.product_uom_unit"/>
             <field name="uom_po_id" ref="uom.product_uom_unit"/>
-                    <field name="sale_ok">False</field>
+            <field name="sale_ok">False</field>
             <field name="purchase_ok">True</field>
         </record>
 
         <record id="raw_material_nonwoven_large" model="product.template">
             <field name="name">无纺布 140x180mm</field>
+            <field name="default_code">RM008</field>
             <field name="type">consu</field>
+            <field name="is_storable">True</field>
             <field name="categ_id" ref="categ_textile_materials"/>
             <field name="barcode">RM008NW140180</field>
             <field name="list_price">0.12</field>
@@ -395,7 +433,7 @@
             <field name="description">医用无纺布，规格140x180mm，用于SA-098大型垫片生产</field>
             <field name="uom_id" ref="uom.product_uom_unit"/>
             <field name="uom_po_id" ref="uom.product_uom_unit"/>
-                    <field name="sale_ok">False</field>
+            <field name="sale_ok">False</field>
             <field name="purchase_ok">True</field>
         </record>
 
