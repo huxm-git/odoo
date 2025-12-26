@@ -1,0 +1,237 @@
+/* Manufacturing MVP CSS Styles */
+
+/* AI助手聊天界面样式 */
+.ai-chat-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.ai-chat-input {
+    border-radius: 20px;
+    border: 2px solid #007bff;
+    padding: 10px 15px;
+    font-size: 16px;
+}
+
+.ai-chat-input:focus {
+    border-color: #0056b3;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+.ai-response-area {
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    padding: 15px;
+    margin: 15px 0;
+    min-height: 100px;
+    border-left: 4px solid #007bff;
+}
+
+.quick-query-btn {
+    margin: 5px;
+    border-radius: 20px;
+    padding: 8px 16px;
+    font-size: 14px;
+}
+
+/* 扫码操作界面样式 */
+.scan-input-highlight {
+    border: 3px solid #28a745 !important;
+    box-shadow: 0 0 10px rgba(40, 167, 69, 0.3);
+}
+
+.scan-result-success {
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+    color: #155724;
+}
+
+.scan-result-error {
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+    color: #721c24;
+}
+
+/* 生产看板样式 */
+.production-kanban-card {
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: transform 0.2s;
+}
+
+.production-kanban-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+.priority-urgent {
+    border-left: 4px solid #dc3545;
+}
+
+.priority-normal {
+    border-left: 4px solid #6c757d;
+}
+
+.priority-high {
+    border-left: 4px solid #ffc107;
+}
+
+/* 库存状态样式 */
+.stock-status-in-stock {
+    color: #28a745;
+    font-weight: bold;
+}
+
+.stock-status-low-stock {
+    color: #ffc107;
+    font-weight: bold;
+}
+
+.stock-status-out-of-stock {
+    color: #dc3545;
+    font-weight: bold;
+}
+
+/* 产品卡片样式 */
+.product-card {
+    border-radius: 10px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.product-card:hover {
+    transform: scale(1.02);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.product-image {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+}
+
+/* 统计卡片样式 */
+.stat-card {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border-radius: 15px;
+    padding: 20px;
+    text-align: center;
+    margin: 10px;
+}
+
+.stat-number {
+    font-size: 2.5em;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.stat-label {
+    font-size: 1.1em;
+    opacity: 0.9;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .ai-chat-container {
+        padding: 10px;
+    }
+    
+    .quick-query-btn {
+        width: 100%;
+        margin: 5px 0;
+    }
+    
+    .production-kanban-card {
+        margin-bottom: 15px;
+    }
+}
+
+/* 动画效果 */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+    animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.pulse {
+    animation: pulse 2s infinite;
+}
+
+/* 加载动画 */
+.loading-spinner {
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #007bff;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    animation: spin 1s linear infinite;
+    margin: 10px auto;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* 成功/错误提示样式 */
+.alert-success-custom {
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+    color: #155724;
+    border-radius: 10px;
+    padding: 15px;
+    margin: 10px 0;
+}
+
+.alert-error-custom {
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+    color: #721c24;
+    border-radius: 10px;
+    padding: 15px;
+    margin: 10px 0;
+}
+
+/* 按钮样式增强 */
+.btn-scan {
+    background: linear-gradient(45deg, #28a745, #20c997);
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.btn-scan:hover {
+    background: linear-gradient(45deg, #218838, #1ea080);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(40, 167, 69, 0.3);
+}
+
+.btn-ai {
+    background: linear-gradient(45deg, #007bff, #6610f2);
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.btn-ai:hover {
+    background: linear-gradient(45deg, #0056b3, #520dc2);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 123, 255, 0.3);
+}

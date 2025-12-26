@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="300" height="120" viewBox="0 0 300 120" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="gradient1" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#2E86AB;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#A23B72;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="gradient2" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#A23B72;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#F18F01;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- 背景圆形 -->
+  <circle cx="40" cy="60" r="35" fill="url(#gradient1)" opacity="0.1"/>
+  
+  <!-- 医疗十字标志 -->
+  <g transform="translate(40, 60)">
+    <!-- 垂直条 -->
+    <rect x="-3" y="-20" width="6" height="40" fill="url(#gradient1)" rx="3"/>
+    <!-- 水平条 -->
+    <rect x="-20" y="-3" width="40" height="6" fill="url(#gradient1)" rx="3"/>
+    <!-- 中心圆点 -->
+    <circle cx="0" cy="0" r="4" fill="#F18F01"/>
+  </g>
+  
+  <!-- Strip 文字 -->
+  <text x="90" y="45" font-family="Roboto, Arial, sans-serif" font-size="28" font-weight="bold" fill="url(#gradient1)">Strip</text>
+  
+  <!-- Medical 文字 -->
+  <text x="90" y="75" font-family="Roboto, Arial, sans-serif" font-size="18" font-weight="normal" fill="#666">Medical</text>
+  
+  <!-- 装饰线条 -->
+  <line x1="90" y1="85" x2="200" y2="85" stroke="url(#gradient2)" stroke-width="2" opacity="0.6"/>
+  
+  <!-- 小装饰元素 -->
+  <circle cx="210" cy="35" r="2" fill="#F18F01" opacity="0.8"/>
+  <circle cx="220" cy="45" r="1.5" fill="#2E86AB" opacity="0.6"/>
+  <circle cx="215" cy="55" r="1" fill="#A23B72" opacity="0.7"/>
+  
+  <!-- 标语 -->
+  <text x="90" y="100" font-family="Roboto, Arial, sans-serif" font-size="10" font-weight="normal" fill="#999">Professional Medical Solutions</text>
+</svg>

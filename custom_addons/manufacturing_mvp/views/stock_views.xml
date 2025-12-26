@@ -1,0 +1,350 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- 库存单据表单视图扩展 -->
+    <record id="view_stock_picking_form_mvp" model="ir.ui.view">
+        <field name="name">stock.picking.form.mvp</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <button name="action_simulate_scan"
+                        string="📱 扫码操作"
+                        type="object"
+                        class="btn-primary"
+                        invisible="state in ('done', 'cancel')"/>
+                <button name="action_toggle_scan_mode"
+                        string="🔄 切换扫码模式"
+                        type="object"
+                        class="btn-secondary"/>
+                <button name="action_quick_validate"
+                        string="⚡ 快速验证"
+                        type="object"
+                        class="btn-success"
+                        invisible="state not in ('assigned', 'confirmed')"/>
+            </xpath>
+            
+            <xpath expr="//field[@name='origin']" position="after">
+                <field name="scan_mode" widget="boolean_toggle"/>
+                <field name="quick_operation" readonly="1"/>
+            </xpath>
+            
+            <xpath expr="//notebook" position="inside">
+                <page string="扫码记录" name="scan_log" invisible="not scan_log">
+                    <field name="scan_log" readonly="1" widget="text"/>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- 库存单据列表视图扩展 -->
+    <record id="view_stock_picking_tree_mvp" model="ir.ui.view">
+        <field name="name">stock.picking.tree.mvp</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.vpicktree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='state']" position="before">
+                <field name="scan_mode" widget="boolean_toggle"/>
+                <field name="quick_operation" widget="badge"
+                       decoration-success="quick_operation == True"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- 扫码操作看板视图 -->
+    <record id="view_stock_picking_kanban_scan" model="ir.ui.view">
+        <field name="name">stock.picking.kanban.scan</field>
+        <field name="model">stock.picking</field>
+        <field name="arch" type="xml">
+            <kanban default_group_by="picking_type_id" class="o_kanban_small_column">
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="scheduled_date"/>
+                <field name="state"/>
+                <field name="scan_mode"/>
+                <field name="quick_operation"/>
+                <field name="picking_type_id"/>
+                <field name="picking_type_code"/>
+                <templates>
+                    <t t-name="card">
+                        <div class="oe_kanban_card oe_kanban_global_click">
+                            <div class="oe_kanban_content">
+                                <div class="o_kanban_record_top">
+                                    <div class="o_kanban_record_headings">
+                                        <strong class="o_kanban_record_title">
+                                            <field name="name"/>
+                                        </strong>
+                                        <div class="o_kanban_record_subtitle">
+                                            <field name="partner_id"/>
+                                        </div>
+                                    </div>
+                                    <div class="o_dropdown_kanban dropdown">
+                                        <a class="dropdown-toggle o-no-caret btn" data-toggle="dropdown" href="#" role="button" aria-label="Dropdown menu" title="Dropdown menu">
+                                            <span class="fa fa-ellipsis-v"/>
+                                        </a>
+                                        <div class="dropdown-menu" role="menu">
+                                            <a t-if="record.state.raw_value in ['assigned', 'confirmed']" 
+                                               name="action_simulate_scan" type="object" class="dropdown-item">📱 扫码操作</a>
+                                            <a name="action_toggle_scan_mode" type="object" class="dropdown-item">🔄 切换扫码模式</a>
+                                            <a t-if="record.state.raw_value in ['assigned', 'confirmed']" 
+                                               name="action_quick_validate" type="object" class="dropdown-item">⚡ 快速验证</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="o_kanban_record_body">
+                                    <div class="o_kanban_tags_section">
+                                        <span t-if="record.scan_mode.raw_value" class="badge badge-info">📱 扫码模式</span>
+                                        <span t-if="record.quick_operation.raw_value" class="badge badge-success">⚡ 快速操作</span>
+                                    </div>
+                                    <div>
+                                        <i class="fa fa-clock-o" title="计划日期"/> <field name="scheduled_date" widget="date"/>
+                                    </div>
+                                </div>
+                                <div class="o_kanban_record_bottom">
+                                    <div class="oe_kanban_bottom_left">
+                                        <field name="state" widget="label_selection" 
+                                               options="{'classes': {'draft': 'default', 'confirmed': 'info', 'assigned': 'success', 'done': 'success', 'cancel': 'danger'}}"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!-- 扫码操作搜索视图 -->
+    <record id="view_stock_picking_search_scan" model="ir.ui.view">
+        <field name="name">stock.picking.search.scan</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_internal_search"/>
+        <field name="arch" type="xml">
+            <xpath expr="//filter[@name='available']" position="after">
+                <separator/>
+                <filter string="扫码模式" name="scan_mode" 
+                        domain="[('scan_mode', '=', True)]"/>
+                <filter string="快速操作" name="quick_operation" 
+                        domain="[('quick_operation', '=', True)]"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- 产品库存列表视图 -->
+    <record id="view_product_template_stock_list" model="ir.ui.view">
+        <field name="name">product.template.stock.list</field>
+        <field name="model">product.template</field>
+        <field name="arch" type="xml">
+            <list string="产品库存" create="false" edit="false">
+                <field name="name" string="产品名称"/>
+                <field name="default_code" string="产品编号"/>
+                <field name="categ_id" string="产品类别"/>
+                <field name="qty_available" string="现有数量" widget="float"/>
+                <field name="virtual_available" string="预测数量" widget="float"/>
+                <field name="uom_id" string="单位"/>
+                <field name="sale_ok" string="可销售" widget="boolean"/>
+                <field name="purchase_ok" string="可采购" widget="boolean"/>
+                <button name="action_view_stock_moves"
+                        string="📦 库存移动"
+                        type="object"
+                        class="btn-outline-primary"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- 产品库存看板视图 -->
+    <record id="view_product_template_stock_kanban" model="ir.ui.view">
+        <field name="name">product.template.stock.kanban</field>
+        <field name="model">product.template</field>
+        <field name="arch" type="xml">
+            <kanban class="o_kanban_small_column">
+                <field name="name"/>
+                <field name="qty_available"/>
+                <field name="virtual_available"/>
+                <field name="uom_id"/>
+                <field name="sale_ok"/>
+                <field name="purchase_ok"/>
+                <templates>
+                    <t t-name="card">
+                        <div class="oe_kanban_card oe_kanban_global_click">
+                            <div class="oe_kanban_content">
+                                <div class="o_kanban_record_top">
+                                    <div class="o_kanban_record_headings">
+                                        <strong class="o_kanban_record_title">
+                                            <field name="name"/>
+                                        </strong>
+                                    </div>
+                                </div>
+                                <div class="o_kanban_record_body">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <strong>现有库存:</strong><br/>
+                                            <span class="text-primary">
+                                                <field name="qty_available"/> <field name="uom_id"/>
+                                            </span>
+                                        </div>
+                                        <div class="col-6">
+                                            <strong>预测库存:</strong><br/>
+                                            <span class="text-info">
+                                                <field name="virtual_available"/> <field name="uom_id"/>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="o_kanban_tags_section mt-2">
+                                        <span t-if="record.sale_ok.raw_value" class="badge badge-success">可销售</span>
+                                        <span t-if="record.purchase_ok.raw_value" class="badge badge-info">可采购</span>
+                                    </div>
+                                </div>
+                                <div class="o_kanban_record_bottom">
+                                    <div class="oe_kanban_bottom_left">
+                                        <button name="action_view_stock_moves"
+                                                string="📦 库存移动"
+                                                type="object"
+                                                class="btn btn-sm btn-outline-primary"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!-- 成品库存管理动作 -->
+    <record id="action_finished_products_stock" model="ir.actions.act_window">
+        <field name="name">🆕 成品库存</field>
+        <field name="res_model">product.template</field>
+        <field name="view_mode">list,kanban,form</field>
+        <field name="view_id" ref="view_product_template_stock_list"/>
+        <field name="domain">[('sale_ok', '=', True), ('purchase_ok', '=', False)]</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Strict®系列成品库存管理
+            </p>
+            <p>
+                在这里您可以查看所有可销售的Strict®产品库存状态
+            </p>
+        </field>
+    </record>
+
+    <!-- 原材料库存管理动作 -->
+    <record id="action_raw_materials_stock" model="ir.actions.act_window">
+        <field name="name">🆕 原材料库存</field>
+        <field name="res_model">product.template</field>
+        <field name="view_mode">list,kanban,form</field>
+        <field name="view_id" ref="view_product_template_stock_list"/>
+        <field name="domain">[('purchase_ok', '=', True), ('sale_ok', '=', False)]</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                原材料库存管理
+            </p>
+            <p>
+                在这里您可以查看所有原材料和组件的库存状态
+            </p>
+        </field>
+    </record>
+
+    <!-- 全部库存管理动作 -->
+    <record id="action_all_products_stock" model="ir.actions.act_window">
+        <field name="name">全部库存</field>
+        <field name="res_model">product.template</field>
+        <field name="view_mode">list,kanban,form</field>
+        <field name="view_id" ref="view_product_template_stock_list"/>
+        <field name="domain">[]</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Strip Medical产品库存总览
+            </p>
+            <p>
+                在这里您可以查看所有Strip Medical产品的库存状态
+            </p>
+        </field>
+    </record>
+
+    <!-- 库存数量视图 -->
+    <record id="action_stock_quant_mvp" model="ir.actions.act_window">
+        <field name="name">库存数量详情</field>
+        <field name="res_model">stock.quant</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[('quantity', '>', 0)]</field>
+        <field name="context">{
+            'search_default_group_by_product_id': 1,
+            'search_default_group_by_location_id': 1,
+        }</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                详细库存数量查看
+            </p>
+            <p>
+                在这里您可以查看每个产品在不同位置的具体库存数量
+            </p>
+        </field>
+    </record>
+
+    <!-- 扫码操作动作 -->
+    <record id="action_stock_scan_operations" model="ir.actions.act_window">
+        <field name="name">扫码库存操作</field>
+        <field name="res_model">stock.picking</field>
+        <field name="view_mode">kanban,list,form</field>
+        <field name="domain">[('state', 'in', ['draft', 'confirmed', 'assigned'])]</field>
+        <field name="context">{
+            'search_default_available': 1,
+            'default_scan_mode': True,
+        }</field>
+        <field name="search_view_id" ref="view_stock_picking_search_scan"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                开始您的扫码库存操作！
+            </p>
+            <p>
+                使用扫码功能可以快速进行：
+                <ul>
+                    <li>📱 扫码入库/出库</li>
+                    <li>⚡ 快速验证单据</li>
+                    <li>📊 实时库存更新</li>
+                    <li>📝 操作记录追踪</li>
+                </ul>
+            </p>
+        </field>
+    </record>
+
+    <!-- 库存概览仪表板 -->
+    <record id="view_stock_dashboard" model="ir.ui.view">
+        <field name="name">stock.dashboard</field>
+        <field name="model">product.template</field>
+        <field name="arch" type="xml">
+            <form string="库存概览">
+                <sheet>
+                    <div class="oe_title">
+                        <h1>📦 智能库存管理中心</h1>
+                    </div>
+                    <group>
+                        <group string="快速操作">
+                            <button name="%(action_product_stock_management)d" 
+                                    string="📊 库存查询" 
+                                    type="action" 
+                                    class="btn-primary oe_highlight"/>
+                            <button name="%(action_stock_scan_operations)d" 
+                                    string="📱 扫码操作" 
+                                    type="action" 
+                                    class="btn-success"/>
+                        </group>
+                        <group string="库存统计">
+                            <div class="o_field_widget o_readonly_modifier">
+                                <div class="text-center">
+                                    <div class="o_stat_info">
+                                        <span class="o_stat_value">总产品数</span>
+                                        <span class="o_stat_text">种类</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>

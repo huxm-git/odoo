@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- 扫码向导表单视图 -->
+    <record id="view_stock_scan_wizard_form" model="ir.ui.view">
+        <field name="name">stock.scan.wizard.form</field>
+        <field name="model">stock.scan.wizard</field>
+        <field name="arch" type="xml">
+            <form string="扫码操作">
+                <sheet>
+                    <div class="oe_title">
+                        <h1>📱 扫码操作</h1>
+                        <h2>
+                            <field name="picking_id" readonly="1"/>
+                            <span> - </span>
+                            <field name="operation_type" readonly="1"/>
+                        </h2>
+                    </div>
+                    
+                    <group>
+                        <group string="扫码输入">
+                            <field name="barcode_input" 
+                                   placeholder="请输入产品条码或产品名称..."
+                                   class="o_field_highlight"/>
+                            <field name="quantity"
+                                   readonly="not product_id"/>
+                        </group>
+                        <group string="产品信息">
+                            <field name="product_id" readonly="1"/>
+                            <field name="product_name" readonly="1"/>
+                            <field name="current_stock" readonly="1"/>
+                        </group>
+                    </group>
+                    
+                    <group string="扫码结果">
+                        <field name="scan_result" readonly="1" widget="text" nolabel="1"/>
+                    </group>
+                    
+                    <group string="操作记录" invisible="not operation_log">
+                        <field name="operation_log" readonly="1" widget="text" nolabel="1"/>
+                    </group>
+                </sheet>
+                
+                <footer>
+                    <button name="action_scan_product"
+                            string="📱 执行扫码"
+                            type="object"
+                            class="btn-primary"
+                            invisible="not product_id"/>
+                    <button name="action_quick_validate" 
+                            string="⚡ 快速验证单据" 
+                            type="object" 
+                            class="btn-success"/>
+                    <button name="action_finish_scan" 
+                            string="✅ 完成扫码" 
+                            type="object" 
+                            class="btn-secondary"/>
+                    <button string="取消" class="btn-default" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <!-- 扫码向导动作 -->
+    <record id="action_stock_scan_wizard" model="ir.actions.act_window">
+        <field name="name">扫码操作</field>
+        <field name="res_model">stock.scan.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="view_id" ref="view_stock_scan_wizard_form"/>
+    </record>
+</odoo>

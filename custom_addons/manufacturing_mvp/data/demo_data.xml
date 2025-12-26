@@ -1,0 +1,793 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- Strip Medical 产品类别 -->
+        <record id="categ_medical_pads" model="product.category">
+            <field name="name">医用垫片</field>
+            <field name="parent_id" ref="product.product_category_all"/>
+        </record>
+
+        <record id="categ_swab_sticks" model="product.category">
+            <field name="name">棉签棒</field>
+            <field name="parent_id" ref="product.product_category_all"/>
+        </record>
+
+        <record id="categ_sterile_saline" model="product.category">
+            <field name="name">无菌生理盐水产品</field>
+            <field name="parent_id" ref="product.product_category_all"/>
+        </record>
+
+        <record id="categ_test_reagents" model="product.category">
+            <field name="name">测试试剂</field>
+            <field name="parent_id" ref="product.product_category_all"/>
+        </record>
+
+        <!-- 原材料类别 -->
+        <record id="categ_raw_materials" model="product.category">
+            <field name="name">原材料</field>
+            <field name="parent_id" ref="product.product_category_all"/>
+        </record>
+
+        <record id="categ_chemical_materials" model="product.category">
+            <field name="name">化学原料</field>
+            <field name="parent_id" ref="categ_raw_materials"/>
+        </record>
+
+        <record id="categ_textile_materials" model="product.category">
+            <field name="name">纺织材料</field>
+            <field name="parent_id" ref="categ_raw_materials"/>
+        </record>
+
+        <record id="categ_packaging_materials" model="product.category">
+            <field name="name">包装材料</field>
+            <field name="parent_id" ref="categ_raw_materials"/>
+        </record>
+
+        <record id="categ_plastic_materials" model="product.category">
+            <field name="name">塑料材料</field>
+            <field name="parent_id" ref="categ_raw_materials"/>
+        </record>
+
+        <!-- Strip Medical 成品系列 - 这些是最终销售产品，需要跟踪库存 -->
+
+        <!-- 医用垫片系列 -->
+        <record id="product_alcohol_prep_pad_sa01" model="product.template">
+            <field name="name">Strict® 酒精预处理垫片 SA-01</field>
+            <field name="default_code">SA-01</field>
+            <field name="type">consu</field>
+            <field name="is_storable">True</field>
+            <field name="categ_id" ref="categ_medical_pads"/>
+            <field name="barcode">SM001SA01</field>
+            <field name="list_price">0.15</field>
+            <field name="standard_price">0.08</field>
+            <field name="production_time">0.1</field>
+            <field name="min_stock_level">5000</field>
+            <field name="supplier_lead_time">7</field>
+            <field name="production_status">ready</field>
+            <field name="description">70%异丙醇，无纺布尺寸65x30mm，2层，包装200片/盒</field>
+            <field name="uom_id" ref="uom.product_uom_unit"/>
+            <field name="uom_po_id" ref="uom.product_uom_unit"/>
+            <field name="sale_ok">True</field>
+            <field name="purchase_ok">False</field>
+        </record>
+
+        <record id="product_alcohol_prep_pad_sa628" model="product.template">
+            <field name="name">Strict® 酒精预处理垫片 SA-628</field>
+            <field name="default_code">SA-628</field>
+            <field name="type">consu</field>
+            <field name="is_storable">True</field>
+            <field name="categ_id" ref="categ_medical_pads"/>
+            <field name="barcode">SM002SA628</field>
+            <field name="list_price">0.25</field>
+            <field name="standard_price">0.15</field>
+            <field name="production_time">0.1</field>
+            <field name="min_stock_level">3000</field>
+            <field name="supplier_lead_time">7</field>
+            <field name="production_status">ready</field>
+            <field name="description">70%异丙醇，无纺布尺寸65x58mm，4层，包装200片/盒</field>
+            <field name="uom_id" ref="uom.product_uom_unit"/>
+            <field name="uom_po_id" ref="uom.product_uom_unit"/>
+            <field name="sale_ok">True</field>
+            <field name="purchase_ok">False</field>
+        </record>
+
+        <record id="product_medical_pad_sa088" model="product.template">
+            <field name="name">Strict® 医用垫片 SA-088</field>
+            <field name="default_code">SA-088</field>
+            <field name="type">consu</field>
+            <field name="is_storable">True</field>
+            <field name="categ_id" ref="categ_medical_pads"/>
+            <field name="barcode">SM003SA088</field>
+            <field name="list_price">0.35</field>
+            <field name="standard_price">0.20</field>
+            <field name="production_time">0.1</field>
+            <field name="min_stock_level">2000</field>
+            <field name="supplier_lead_time">7</field>
+            <field name="production_status">ready</field>
+            <field name="description">70%异丙醇，无纺布尺寸65x56mm，包装50片/盒</field>
+            <field name="uom_id" ref="uom.product_uom_unit"/>
+            <field name="uom_po_id" ref="uom.product_uom_unit"/>
+            <field name="sale_ok">True</field>
+            <field name="purchase_ok">False</field>
+        </record>
+
+        <record id="product_large_prep_pad_sa098" model="product.template">
+            <field name="name">Strict® 大型预处理垫片 SA-098</field>
+            <field name="default_code">SA-098</field>
+            <field name="type">consu</field>
+            <field name="is_storable">True</field>
+            <field name="categ_id" ref="categ_medical_pads"/>
+            <field name="barcode">SM004SA098</field>
+            <field name="list_price">0.85</field>
+            <field name="standard_price">0.50</field>
+            <field name="production_time">0.15</field>
+            <field name="min_stock_level">1000</field>
+            <field name="supplier_lead_time">7</field>
+            <field name="production_status">ready</field>
+            <field name="description">70%异丙醇，无纺布尺寸140x180mm，包装100片/盒</field>
+            <field name="uom_id" ref="uom.product_uom_unit"/>
+            <field name="uom_po_id" ref="uom.product_uom_unit"/>
+            <field name="sale_ok">True</field>
+            <field name="purchase_ok">False</field>
+        </record>
+
+        <record id="product_soft_bath_wipes_sc592" model="product.template">
+            <field name="name">Strict® 柔软沐浴湿巾 SC-592</field>
+            <field name="default_code">SC-592</field>
+            <field name="type">consu</field>
+            <field name="is_storable">True</field>
+            <field name="categ_id" ref="categ_medical_pads"/>
+            <field name="barcode">SM005SC592</field>
+            <field name="list_price">1.20</field>
+            <field name="standard_price">0.70</field>
+            <field name="production_time">0.2</field>
+            <field name="min_stock_level">500</field>
+            <field name="supplier_lead_time">7</field>
+            <field name="production_status">ready</field>
+            <field name="description">保湿配方，无纺布尺寸22x11cm，包装8片/包</field>
+            <field name="uom_id" ref="uom.product_uom_unit"/>
+            <field name="uom_po_id" ref="uom.product_uom_unit"/>
+            <field name="sale_ok">True</field>
+            <field name="purchase_ok">False</field>
+        </record>
+
+        <!-- 棉签棒系列 -->
+        <record id="product_alcohol_swabstick_sa653" model="product.template">
+            <field name="name">Strict® 酒精棉签棒 SA-653</field>
+            <field name="default_code">SA-653</field>
+            <field name="type">consu</field>
+            <field name="is_storable">True</field>
+            <field name="categ_id" ref="categ_swab_sticks"/>
+            <field name="barcode">SM006SA653</field>
+            <field name="list_price">0.45</field>
+            <field name="standard_price">0.25</field>
+            <field name="production_time">0.08</field>
+            <field name="min_stock_level">2000</field>
+            <field name="supplier_lead_time">7</field>
+            <field name="production_status">ready</field>
+            <field name="description">70%异丙醇，棉签棒长度100mm，包装50支/盒</field>
+            <field name="uom_id" ref="uom.product_uom_unit"/>
+            <field name="uom_po_id" ref="uom.product_uom_unit"/>
+            <field name="sale_ok">True</field>
+            <field name="purchase_ok">False</field>
+        </record>
+
+        <record id="product_alcohol_swabstick_sa018" model="product.template">
+            <field name="name">Strict® 酒精棉签棒 SA-018</field>
+            <field name="default_code">SA-018</field>
+            <field name="type">consu</field>
+            <field name="is_storable">True</field>
+            <field name="categ_id" ref="categ_swab_sticks"/>
+            <field name="barcode">SM007SA018</field>
+            <field name="list_price">0.35</field>
+            <field name="standard_price">0.20</field>
+            <field name="production_time">0.08</field>
+            <field name="min_stock_level">3000</field>
+            <field name="supplier_lead_time">7</field>
+            <field name="production_status">ready</field>
+            <field name="description">70%异丙醇，棉签棒长度70mm，包装100支/盒</field>
+            <field name="uom_id" ref="uom.product_uom_unit"/>
+            <field name="uom_po_id" ref="uom.product_uom_unit"/>
+            <field name="sale_ok">True</field>
+            <field name="purchase_ok">False</field>
+        </record>
+
+        <record id="product_povidone_swabstick_sb663" model="product.template">
+            <field name="name">Strict® 聚维酮碘棉签棒 SB-663</field>
+            <field name="default_code">SB-663</field>
+            <field name="type">consu</field>
+            <field name="is_storable">True</field>
+            <field name="categ_id" ref="categ_swab_sticks"/>
+            <field name="barcode">SM008SB663</field>
+            <field name="list_price">0.65</field>
+            <field name="standard_price">0.35</field>
+            <field name="production_time">0.1</field>
+            <field name="min_stock_level">1500</field>
+            <field name="supplier_lead_time">7</field>
+            <field name="production_status">ready</field>
+            <field name="description">10%聚维酮碘溶液(相当于1%有效碘)，棉签棒长度100mm，包装50支/盒</field>
+            <field name="uom_id" ref="uom.product_uom_unit"/>
+            <field name="uom_po_id" ref="uom.product_uom_unit"/>
+            <field name="sale_ok">True</field>
+            <field name="purchase_ok">False</field>
+        </record>
+
+        <record id="product_povidone_swabstick_sb016" model="product.template">
+            <field name="name">Strict® 聚维酮碘棉签棒 SB-016</field>
+            <field name="default_code">SB-016</field>
+            <field name="type">consu</field>
+            <field name="is_storable">True</field>
+            <field name="categ_id" ref="categ_swab_sticks"/>
+            <field name="barcode">SM009SB016</field>
+            <field name="list_price">0.55</field>
+            <field name="standard_price">0.30</field>
+            <field name="production_time">0.1</field>
+            <field name="min_stock_level">2000</field>
+            <field name="supplier_lead_time">7</field>
+            <field name="production_status">ready</field>
+            <field name="description">10%聚维酮碘溶液(相当于1%有效碘)，棉签棒长度70mm，包装100支/盒</field>
+            <field name="uom_id" ref="uom.product_uom_unit"/>
+            <field name="uom_po_id" ref="uom.product_uom_unit"/>
+            <field name="sale_ok">True</field>
+            <field name="purchase_ok">False</field>
+        </record>
+
+        <!-- 无菌生理盐水产品系列 -->
+        <record id="product_sterile_saline_wipe_sc645" model="product.template">
+            <field name="name">Strict® 无菌生理盐水清洁湿巾 SC-645</field>
+            <field name="default_code">SC-645</field>
+            <field name="type">consu</field>
+            <field name="is_storable">True</field>
+            <field name="categ_id" ref="categ_sterile_saline"/>
+            <field name="barcode">SM010SC645</field>
+            <field name="list_price">0.30</field>
+            <field name="standard_price">0.18</field>
+            <field name="production_time">0.12</field>
+            <field name="min_stock_level">3000</field>
+            <field name="supplier_lead_time">7</field>
+            <field name="production_status">ready</field>
+            <field name="description">0.9%氯化钠生理盐水，多种规格可选，包装100片/盒</field>
+            <field name="uom_id" ref="uom.product_uom_unit"/>
+            <field name="uom_po_id" ref="uom.product_uom_unit"/>
+            <field name="sale_ok">True</field>
+            <field name="purchase_ok">False</field>
+        </record>
+
+        <record id="product_sterile_saline_tube_sc207" model="product.template">
+            <field name="name">Strict® 无菌生理盐水清洁管 SC-207</field>
+            <field name="default_code">SC-207</field>
+            <field name="type">consu</field>
+            <field name="is_storable">True</field>
+            <field name="categ_id" ref="categ_sterile_saline"/>
+            <field name="barcode">SM011SC207</field>
+            <field name="list_price">1.50</field>
+            <field name="standard_price">0.85</field>
+            <field name="production_time">0.15</field>
+            <field name="min_stock_level">1000</field>
+            <field name="supplier_lead_time">7</field>
+            <field name="production_status">ready</field>
+            <field name="description">0.9%氯化钠生理盐水，规格15ml/20ml/30ml，包装50支/盒</field>
+            <field name="uom_id" ref="uom.product_uom_unit"/>
+            <field name="uom_po_id" ref="uom.product_uom_unit"/>
+            <field name="sale_ok">True</field>
+            <field name="purchase_ok">False</field>
+        </record>
+
+        <!-- 原材料产品系列 - 所有原材料都需要跟踪库存 -->
+
+        <!-- 化学原料 -->
+        <record id="raw_material_isopropyl_alcohol" model="product.template">
+            <field name="name">异丙醇 (70%医用级)</field>
+            <field name="default_code">RM001</field>
+            <field name="type">consu</field>
+            <field name="is_storable">True</field>
+            <field name="categ_id" ref="categ_chemical_materials"/>
+            <field name="barcode">RM001IPA70</field>
+            <field name="list_price">12.50</field>
+            <field name="standard_price">8.00</field>
+            <field name="production_time">0</field>
+            <field name="min_stock_level">500</field>
+            <field name="supplier_lead_time">14</field>
+            <field name="production_status">ready</field>
+            <field name="description">医用级70%异丙醇，用于酒精垫片和棉签棒生产</field>
+            <field name="uom_id" ref="uom.product_uom_litre"/>
+            <field name="uom_po_id" ref="uom.product_uom_litre"/>
+            <field name="sale_ok">False</field>
+            <field name="purchase_ok">True</field>
+        </record>
+
+        <record id="raw_material_povidone_iodine" model="product.template">
+            <field name="name">聚维酮碘溶液 (10%)</field>
+            <field name="default_code">RM002</field>
+            <field name="type">consu</field>
+            <field name="is_storable">True</field>
+            <field name="categ_id" ref="categ_chemical_materials"/>
+            <field name="barcode">RM002PVI10</field>
+            <field name="list_price">25.00</field>
+            <field name="standard_price">18.00</field>
+            <field name="production_time">0</field>
+            <field name="min_stock_level">200</field>
+            <field name="supplier_lead_time">14</field>
+            <field name="production_status">ready</field>
+            <field name="description">10%聚维酮碘溶液，相当于1%有效碘，用于碘伏棉签棒生产</field>
+            <field name="uom_id" ref="uom.product_uom_litre"/>
+            <field name="uom_po_id" ref="uom.product_uom_litre"/>
+            <field name="sale_ok">False</field>
+            <field name="purchase_ok">True</field>
+        </record>
+
+        <record id="raw_material_sodium_chloride" model="product.template">
+            <field name="name">氯化钠 (医用级)</field>
+            <field name="default_code">RM003</field>
+            <field name="type">consu</field>
+            <field name="is_storable">True</field>
+            <field name="categ_id" ref="categ_chemical_materials"/>
+            <field name="barcode">RM003NACL</field>
+            <field name="list_price">8.00</field>
+            <field name="standard_price">5.50</field>
+            <field name="production_time">0</field>
+            <field name="min_stock_level">1000</field>
+            <field name="supplier_lead_time">14</field>
+            <field name="production_status">ready</field>
+            <field name="description">医用级氯化钠，用于配制0.9%生理盐水</field>
+            <field name="uom_id" ref="uom.product_uom_kgm"/>
+            <field name="uom_po_id" ref="uom.product_uom_kgm"/>
+            <field name="sale_ok">False</field>
+            <field name="purchase_ok">True</field>
+        </record>
+
+        <record id="raw_material_water_injection" model="product.template">
+            <field name="name">注射用水</field>
+            <field name="default_code">RM004</field>
+            <field name="type">consu</field>
+            <field name="is_storable">True</field>
+            <field name="categ_id" ref="categ_chemical_materials"/>
+            <field name="barcode">RM004WFI</field>
+            <field name="list_price">3.50</field>
+            <field name="standard_price">2.00</field>
+            <field name="production_time">0</field>
+            <field name="min_stock_level">2000</field>
+            <field name="supplier_lead_time">7</field>
+            <field name="production_status">ready</field>
+            <field name="description">符合药典标准的注射用水，用于生理盐水配制</field>
+            <field name="uom_id" ref="uom.product_uom_litre"/>
+            <field name="uom_po_id" ref="uom.product_uom_litre"/>
+            <field name="sale_ok">False</field>
+            <field name="purchase_ok">True</field>
+        </record>
+
+        <record id="raw_material_moisturizer" model="product.template">
+            <field name="name">保湿剂配方</field>
+            <field name="default_code">RM005</field>
+            <field name="type">consu</field>
+            <field name="is_storable">True</field>
+            <field name="categ_id" ref="categ_chemical_materials"/>
+            <field name="barcode">RM005MOIST</field>
+            <field name="list_price">15.00</field>
+            <field name="standard_price">10.00</field>
+            <field name="production_time">0</field>
+            <field name="min_stock_level">100</field>
+            <field name="supplier_lead_time">21</field>
+            <field name="production_status">ready</field>
+            <field name="description">专用保湿配方，用于柔软沐浴湿巾生产</field>
+            <field name="uom_id" ref="uom.product_uom_litre"/>
+            <field name="uom_po_id" ref="uom.product_uom_litre"/>
+            <field name="sale_ok">False</field>
+            <field name="purchase_ok">True</field>
+        </record>
+
+        <!-- 纺织材料 -->
+        <record id="raw_material_nonwoven_65x30" model="product.template">
+            <field name="name">无纺布 65x30mm</field>
+            <field name="default_code">RM006</field>
+            <field name="type">consu</field>
+            <field name="is_storable">True</field>
+            <field name="categ_id" ref="categ_textile_materials"/>
+            <field name="barcode">RM006NW6530</field>
+            <field name="list_price">0.02</field>
+            <field name="standard_price">0.012</field>
+            <field name="production_time">0</field>
+            <field name="min_stock_level">50000</field>
+            <field name="supplier_lead_time">10</field>
+            <field name="production_status">ready</field>
+            <field name="description">医用无纺布，规格65x30mm，用于SA-01垫片生产</field>
+            <field name="uom_id" ref="uom.product_uom_unit"/>
+            <field name="uom_po_id" ref="uom.product_uom_unit"/>
+            <field name="sale_ok">False</field>
+            <field name="purchase_ok">True</field>
+        </record>
+
+        <record id="raw_material_nonwoven_65x58" model="product.template">
+            <field name="name">无纺布 65x58mm</field>
+            <field name="default_code">RM007</field>
+            <field name="type">consu</field>
+            <field name="is_storable">True</field>
+            <field name="categ_id" ref="categ_textile_materials"/>
+            <field name="barcode">RM007NW6558</field>
+            <field name="list_price">0.035</field>
+            <field name="standard_price">0.022</field>
+            <field name="production_time">0</field>
+            <field name="min_stock_level">30000</field>
+            <field name="supplier_lead_time">10</field>
+            <field name="production_status">ready</field>
+            <field name="description">医用无纺布，规格65x58mm，用于SA-628垫片生产</field>
+            <field name="uom_id" ref="uom.product_uom_unit"/>
+            <field name="uom_po_id" ref="uom.product_uom_unit"/>
+            <field name="sale_ok">False</field>
+            <field name="purchase_ok">True</field>
+        </record>
+
+        <record id="raw_material_nonwoven_large" model="product.template">
+            <field name="name">无纺布 140x180mm</field>
+            <field name="default_code">RM008</field>
+            <field name="type">consu</field>
+            <field name="is_storable">True</field>
+            <field name="categ_id" ref="categ_textile_materials"/>
+            <field name="barcode">RM008NW140180</field>
+            <field name="list_price">0.12</field>
+            <field name="standard_price">0.08</field>
+            <field name="production_time">0</field>
+            <field name="min_stock_level">10000</field>
+            <field name="supplier_lead_time">10</field>
+            <field name="production_status">ready</field>
+            <field name="description">医用无纺布，规格140x180mm，用于SA-098大型垫片生产</field>
+            <field name="uom_id" ref="uom.product_uom_unit"/>
+            <field name="uom_po_id" ref="uom.product_uom_unit"/>
+            <field name="sale_ok">False</field>
+            <field name="purchase_ok">True</field>
+        </record>
+
+        <record id="raw_material_nonwoven_bath" model="product.template">
+            <field name="name">无纺布 22x11cm (柔软型)</field>
+            <field name="type">consu</field>
+            <field name="categ_id" ref="categ_textile_materials"/>
+            <field name="barcode">RM009NW2211S</field>
+            <field name="list_price">0.08</field>
+            <field name="standard_price">0.05</field>
+            <field name="production_time">0</field>
+            <field name="min_stock_level">5000</field>
+            <field name="supplier_lead_time">10</field>
+            <field name="production_status">ready</field>
+            <field name="description">柔软型医用无纺布，规格22x11cm，用于SC-592沐浴湿巾生产</field>
+            <field name="uom_id" ref="uom.product_uom_unit"/>
+            <field name="uom_po_id" ref="uom.product_uom_unit"/>
+                    <field name="sale_ok">False</field>
+            <field name="purchase_ok">True</field>
+        </record>
+
+        <record id="raw_material_cotton_tips" model="product.template">
+            <field name="name">医用棉花头</field>
+            <field name="type">consu</field>
+            <field name="categ_id" ref="categ_textile_materials"/>
+            <field name="barcode">RM010COTTON</field>
+            <field name="list_price">0.008</field>
+            <field name="standard_price">0.005</field>
+            <field name="production_time">0</field>
+            <field name="min_stock_level">100000</field>
+            <field name="supplier_lead_time">14</field>
+            <field name="production_status">ready</field>
+            <field name="description">医用级棉花头，用于棉签棒生产</field>
+            <field name="uom_id" ref="uom.product_uom_unit"/>
+            <field name="uom_po_id" ref="uom.product_uom_unit"/>
+                    <field name="sale_ok">False</field>
+            <field name="purchase_ok">True</field>
+        </record>
+
+        <!-- 塑料材料 -->
+        <record id="raw_material_plastic_stick_100mm" model="product.template">
+            <field name="name">塑料棒 100mm</field>
+            <field name="type">consu</field>
+            <field name="categ_id" ref="categ_plastic_materials"/>
+            <field name="barcode">RM011PS100</field>
+            <field name="list_price">0.015</field>
+            <field name="standard_price">0.01</field>
+            <field name="production_time">0</field>
+            <field name="min_stock_level">50000</field>
+            <field name="supplier_lead_time">14</field>
+            <field name="production_status">ready</field>
+            <field name="description">医用级塑料棒，长度100mm，用于SA-653和SB-663棉签棒生产</field>
+            <field name="uom_id" ref="uom.product_uom_unit"/>
+            <field name="uom_po_id" ref="uom.product_uom_unit"/>
+                    <field name="sale_ok">False</field>
+            <field name="purchase_ok">True</field>
+        </record>
+
+        <record id="raw_material_plastic_stick_70mm" model="product.template">
+            <field name="name">塑料棒 70mm</field>
+            <field name="type">consu</field>
+            <field name="categ_id" ref="categ_plastic_materials"/>
+            <field name="barcode">RM012PS70</field>
+            <field name="list_price">0.012</field>
+            <field name="standard_price">0.008</field>
+            <field name="production_time">0</field>
+            <field name="min_stock_level">80000</field>
+            <field name="supplier_lead_time">14</field>
+            <field name="production_status">ready</field>
+            <field name="description">医用级塑料棒，长度70mm，用于SA-018和SB-016棉签棒生产</field>
+            <field name="uom_id" ref="uom.product_uom_unit"/>
+            <field name="uom_po_id" ref="uom.product_uom_unit"/>
+                    <field name="sale_ok">False</field>
+            <field name="purchase_ok">True</field>
+        </record>
+
+        <record id="raw_material_plastic_tube_15ml" model="product.template">
+            <field name="name">塑料管 15ml</field>
+            <field name="type">consu</field>
+            <field name="categ_id" ref="categ_plastic_materials"/>
+            <field name="barcode">RM013PT15</field>
+            <field name="list_price">0.25</field>
+            <field name="standard_price">0.18</field>
+            <field name="production_time">0</field>
+            <field name="min_stock_level">5000</field>
+            <field name="supplier_lead_time">14</field>
+            <field name="production_status">ready</field>
+            <field name="description">医用级塑料管，容量15ml，用于SC-207生理盐水清洁管生产</field>
+            <field name="uom_id" ref="uom.product_uom_unit"/>
+            <field name="uom_po_id" ref="uom.product_uom_unit"/>
+                    <field name="sale_ok">False</field>
+            <field name="purchase_ok">True</field>
+        </record>
+
+        <record id="raw_material_plastic_tube_20ml" model="product.template">
+            <field name="name">塑料管 20ml</field>
+            <field name="type">consu</field>
+            <field name="categ_id" ref="categ_plastic_materials"/>
+            <field name="barcode">RM014PT20</field>
+            <field name="list_price">0.28</field>
+            <field name="standard_price">0.20</field>
+            <field name="production_time">0</field>
+            <field name="min_stock_level">3000</field>
+            <field name="supplier_lead_time">14</field>
+            <field name="production_status">ready</field>
+            <field name="description">医用级塑料管，容量20ml，用于SC-207生理盐水清洁管生产</field>
+            <field name="uom_id" ref="uom.product_uom_unit"/>
+            <field name="uom_po_id" ref="uom.product_uom_unit"/>
+                    <field name="sale_ok">False</field>
+            <field name="purchase_ok">True</field>
+        </record>
+
+        <record id="raw_material_plastic_tube_30ml" model="product.template">
+            <field name="name">塑料管 30ml</field>
+            <field name="type">consu</field>
+            <field name="categ_id" ref="categ_plastic_materials"/>
+            <field name="barcode">RM015PT30</field>
+            <field name="list_price">0.32</field>
+            <field name="standard_price">0.22</field>
+            <field name="production_time">0</field>
+            <field name="min_stock_level">2000</field>
+            <field name="supplier_lead_time">14</field>
+            <field name="production_status">ready</field>
+            <field name="description">医用级塑料管，容量30ml，用于SC-207生理盐水清洁管生产</field>
+            <field name="uom_id" ref="uom.product_uom_unit"/>
+            <field name="uom_po_id" ref="uom.product_uom_unit"/>
+                    <field name="sale_ok">False</field>
+            <field name="purchase_ok">True</field>
+        </record>
+
+        <!-- 包装材料 -->
+        <record id="raw_material_aluminum_pouch_50x50" model="product.template">
+            <field name="name">铝箔包装袋 50x50mm</field>
+            <field name="type">consu</field>
+            <field name="categ_id" ref="categ_packaging_materials"/>
+            <field name="barcode">RM016AP5050</field>
+            <field name="list_price">0.008</field>
+            <field name="standard_price">0.005</field>
+            <field name="production_time">0</field>
+            <field name="min_stock_level">100000</field>
+            <field name="supplier_lead_time">14</field>
+            <field name="production_status">ready</field>
+            <field name="description">医用铝箔包装袋，规格50x50mm，用于垫片单片包装</field>
+            <field name="uom_id" ref="uom.product_uom_unit"/>
+            <field name="uom_po_id" ref="uom.product_uom_unit"/>
+                    <field name="sale_ok">False</field>
+            <field name="purchase_ok">True</field>
+        </record>
+
+        <record id="raw_material_aluminum_pouch_swab" model="product.template">
+            <field name="name">铝箔包装袋 (棉签棒专用)</field>
+            <field name="type">consu</field>
+            <field name="categ_id" ref="categ_packaging_materials"/>
+            <field name="barcode">RM017APSW</field>
+            <field name="list_price">0.012</field>
+            <field name="standard_price">0.008</field>
+            <field name="production_time">0</field>
+            <field name="min_stock_level">50000</field>
+            <field name="supplier_lead_time">14</field>
+            <field name="production_status">ready</field>
+            <field name="description">医用铝箔包装袋，棉签棒专用规格，用于棉签棒单支包装</field>
+            <field name="uom_id" ref="uom.product_uom_unit"/>
+            <field name="uom_po_id" ref="uom.product_uom_unit"/>
+                    <field name="sale_ok">False</field>
+            <field name="purchase_ok">True</field>
+        </record>
+
+        <record id="raw_material_cardboard_box_200" model="product.template">
+            <field name="name">纸盒包装 (200片装)</field>
+            <field name="type">consu</field>
+            <field name="categ_id" ref="categ_packaging_materials"/>
+            <field name="barcode">RM018CB200</field>
+            <field name="list_price">0.35</field>
+            <field name="standard_price">0.25</field>
+            <field name="production_time">0</field>
+            <field name="min_stock_level">2000</field>
+            <field name="supplier_lead_time">14</field>
+            <field name="production_status">ready</field>
+            <field name="description">医用纸盒包装，200片装，用于垫片外包装</field>
+            <field name="uom_id" ref="uom.product_uom_unit"/>
+            <field name="uom_po_id" ref="uom.product_uom_unit"/>
+                    <field name="sale_ok">False</field>
+            <field name="purchase_ok">True</field>
+        </record>
+
+        <record id="raw_material_cardboard_box_100" model="product.template">
+            <field name="name">纸盒包装 (100片装)</field>
+            <field name="type">consu</field>
+            <field name="categ_id" ref="categ_packaging_materials"/>
+            <field name="barcode">RM019CB100</field>
+            <field name="list_price">0.25</field>
+            <field name="standard_price">0.18</field>
+            <field name="production_time">0</field>
+            <field name="min_stock_level">3000</field>
+            <field name="supplier_lead_time">14</field>
+            <field name="production_status">ready</field>
+            <field name="description">医用纸盒包装，100片装，用于垫片和湿巾外包装</field>
+            <field name="uom_id" ref="uom.product_uom_unit"/>
+            <field name="uom_po_id" ref="uom.product_uom_unit"/>
+                    <field name="sale_ok">False</field>
+            <field name="purchase_ok">True</field>
+        </record>
+
+        <record id="raw_material_cardboard_box_50" model="product.template">
+            <field name="name">纸盒包装 (50支装)</field>
+            <field name="type">consu</field>
+            <field name="categ_id" ref="categ_packaging_materials"/>
+            <field name="barcode">RM020CB50</field>
+            <field name="list_price">0.20</field>
+            <field name="standard_price">0.15</field>
+            <field name="production_time">0</field>
+            <field name="min_stock_level">3000</field>
+            <field name="supplier_lead_time">14</field>
+            <field name="production_status">ready</field>
+            <field name="description">医用纸盒包装，50支装，用于棉签棒和生理盐水管外包装</field>
+            <field name="uom_id" ref="uom.product_uom_unit"/>
+            <field name="uom_po_id" ref="uom.product_uom_unit"/>
+                    <field name="sale_ok">False</field>
+            <field name="purchase_ok">True</field>
+        </record>
+
+        <record id="raw_material_plastic_bag_8pack" model="product.template">
+            <field name="name">塑料包装袋 (8片装)</field>
+            <field name="type">consu</field>
+            <field name="categ_id" ref="categ_packaging_materials"/>
+            <field name="barcode">RM021PB8</field>
+            <field name="list_price">0.15</field>
+            <field name="standard_price">0.10</field>
+            <field name="production_time">0</field>
+            <field name="min_stock_level">1000</field>
+            <field name="supplier_lead_time">14</field>
+            <field name="production_status">ready</field>
+            <field name="description">医用塑料包装袋，8片装，用于沐浴湿巾包装</field>
+            <field name="uom_id" ref="uom.product_uom_unit"/>
+            <field name="uom_po_id" ref="uom.product_uom_unit"/>
+                    <field name="sale_ok">False</field>
+            <field name="purchase_ok">True</field>
+        </record>
+
+        <!-- 演示库存 - 将在模块安装后手动创建 -->
+
+        <!-- Strip Medical 公司信息 -->
+        <record id="partner_strip_medical" model="res.partner">
+            <field name="name">南通斯瑞医用有限公司</field>
+            <field name="is_company">True</field>
+            <field name="supplier_rank">1</field>
+            <field name="customer_rank">1</field>
+            <field name="phone">(86)513.8551.2391</field>
+            <field name="mobile">(86)13706295001</field>
+            <field name="email">info.strip@stripmed.com</field>
+            <field name="website">http://www.stripmed.com</field>
+            <field name="street">跃龙南路182号A座</field>
+            <field name="city">南通</field>
+            <field name="zip">226006</field>
+            <field name="country_id" ref="base.cn"/>
+            <field name="comment">专业医用耗材制造商，拥有ISO13485、ISO9001、CE、FDA等认证。主要产品包括Strict®品牌的医用垫片、棉签棒、无菌生理盐水产品等。联系人：蔡世祥经理。传真：(86)513.8508.9339</field>
+        </record>
+
+        <!-- 演示医院客户 -->
+        <record id="partner_demo_hospital_1" model="res.partner">
+            <field name="name">南通市第一人民医院</field>
+            <field name="is_company">True</field>
+            <field name="customer_rank">1</field>
+            <field name="phone">0513-85061061</field>
+            <field name="email">contact@ntyy.com</field>
+            <field name="street">南通市孩儿巷北路6号</field>
+            <field name="city">南通</field>
+            <field name="zip">226001</field>
+            <field name="country_id" ref="base.cn"/>
+        </record>
+
+        <record id="partner_demo_hospital_2" model="res.partner">
+            <field name="name">上海交通大学医学院附属瑞金医院</field>
+            <field name="is_company">True</field>
+            <field name="customer_rank">1</field>
+            <field name="phone">021-64370045</field>
+            <field name="email">info@rjh.com.cn</field>
+            <field name="street">瑞金二路197号</field>
+            <field name="city">上海</field>
+            <field name="zip">200025</field>
+            <field name="country_id" ref="base.cn"/>
+        </record>
+
+        <!-- 演示经销商 -->
+        <record id="partner_demo_distributor_1" model="res.partner">
+            <field name="name">江苏医疗器械经销有限公司</field>
+            <field name="is_company">True</field>
+            <field name="customer_rank">1</field>
+            <field name="supplier_rank">1</field>
+            <field name="phone">025-83456789</field>
+            <field name="email">sales@jsmedical.com</field>
+            <field name="street">江苏省南京市鼓楼区中山路</field>
+            <field name="city">南京</field>
+            <field name="zip">210008</field>
+            <field name="country_id" ref="base.cn"/>
+        </record>
+
+        <!-- 原材料供应商 -->
+        <record id="partner_chemical_supplier" model="res.partner">
+            <field name="name">江苏华康化工有限公司</field>
+            <field name="is_company">True</field>
+            <field name="supplier_rank">1</field>
+            <field name="phone">025-87654321</field>
+            <field name="email">sales@huakang-chem.com</field>
+            <field name="street">江苏省南京市化工园区</field>
+            <field name="city">南京</field>
+            <field name="zip">210047</field>
+            <field name="country_id" ref="base.cn"/>
+            <field name="comment">专业医用化学原料供应商，主要供应异丙醇、聚维酮碘等化学原料</field>
+        </record>
+
+        <record id="partner_textile_supplier" model="res.partner">
+            <field name="name">苏州纺织材料股份有限公司</field>
+            <field name="is_company">True</field>
+            <field name="supplier_rank">1</field>
+            <field name="phone">0512-65432109</field>
+            <field name="email">info@suzhou-textile.com</field>
+            <field name="street">江苏省苏州市工业园区</field>
+            <field name="city">苏州</field>
+            <field name="zip">215021</field>
+            <field name="country_id" ref="base.cn"/>
+            <field name="comment">专业医用纺织材料供应商，主要供应各种规格的医用无纺布和棉花制品</field>
+        </record>
+
+        <record id="partner_packaging_supplier" model="res.partner">
+            <field name="name">上海包装制品有限公司</field>
+            <field name="is_company">True</field>
+            <field name="supplier_rank">1</field>
+            <field name="phone">021-54321098</field>
+            <field name="email">sales@sh-packaging.com</field>
+            <field name="street">上海市嘉定区包装工业园</field>
+            <field name="city">上海</field>
+            <field name="zip">201800</field>
+            <field name="country_id" ref="base.cn"/>
+            <field name="comment">专业医用包装材料供应商，主要供应铝箔包装袋、纸盒包装等</field>
+        </record>
+
+        <record id="partner_plastic_supplier" model="res.partner">
+            <field name="name">浙江塑料制品集团</field>
+            <field name="is_company">True</field>
+            <field name="supplier_rank">1</field>
+            <field name="phone">0571-87654321</field>
+            <field name="email">contact@zj-plastic.com</field>
+            <field name="street">浙江省杭州市塑料工业园</field>
+            <field name="city">杭州</field>
+            <field name="zip">310000</field>
+            <field name="country_id" ref="base.cn"/>
+            <field name="comment">专业医用塑料制品供应商，主要供应各种规格的塑料棒和塑料管</field>
+        </record>
+
+        <!-- 演示物料清单 - 将在模块安装后手动创建 -->
+
+        <!-- 演示生产订单 - 将在模块安装后手动创建 -->
+
+        <!-- 演示销售订单 - 将在模块安装后手动创建 -->
+    </data>
+</odoo>
